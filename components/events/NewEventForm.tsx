@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Center,
+  Checkbox,
   FormControl,
   HStack,
   Input,
@@ -10,10 +11,15 @@ import {
   Select,
   Slider,
   TextArea,
+  TextField,
   VStack,
 } from 'native-base';
+
 import React, { isValidElement, useState } from 'react';
 import { AccessibilityInfo } from 'react-native';
+import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
+import moment from 'moment';
+import NewShowForm from './showForm';
 
 type eventDataType = {
   name: string | undefined;
@@ -22,6 +28,21 @@ type eventDataType = {
   language: string | undefined;
   duration: number | undefined;
   description: string | undefined;
+  genres: string[] | undefined;
+};
+
+const defaultState = {
+  name: undefined,
+  price: undefined,
+  type: undefined,
+  genres: undefined,
+  //image: undefined,
+  //poster: undefined,
+  language: undefined,
+  duration: undefined,
+  description: undefined,
+  //external_url: undefined,
+  //shows: undefined,
 };
 
 function NewEventForm() {
@@ -29,12 +50,12 @@ function NewEventForm() {
     name: undefined,
     price: undefined,
     type: undefined,
-    //genres: undefined,
+    genres: undefined,
     //image: undefined,
     //poster: undefined,
     language: undefined,
     duration: undefined,
-    //description: undefined,
+    description: undefined,
     //external_url: undefined,
     //shows: undefined,
   });
@@ -87,7 +108,7 @@ function NewEventForm() {
       </FormControl>
       <FormControl isRequired w={'75%'} mb="2">
         <HStack justifyContent={'space-between'} mb="2">
-          <VStack>
+          <VStack w="25%">
             <FormControl.Label>Price</FormControl.Label>
             <InputGroup>
               <Input
@@ -100,9 +121,24 @@ function NewEventForm() {
             </InputGroup>
           </VStack>
 
-          <VStack>
+          <VStack w="25%">
+            <FormControl.Label>Duration</FormControl.Label>
+
+            <InputGroup>
+              <Input
+                textAlign={'right'}
+                onChangeText={(duration: string) =>
+                  setFormData({ ...formData, duration: +duration })
+                }
+              />
+              <InputRightAddon>minutes</InputRightAddon>
+            </InputGroup>
+          </VStack>
+
+          <VStack w="40%">
             <FormControl.Label>Language</FormControl.Label>
             <Select
+              size="md"
               placeholder="Select spoken language"
               onValueChange={(language) =>
                 setFormData({ ...formData, language })
@@ -113,40 +149,43 @@ function NewEventForm() {
               <Select.Item label="English" value="English" />
             </Select>
           </VStack>
-          <VStack>
-            <FormControl.Label>Duration</FormControl.Label>
-
-            <InputGroup
-              w={{
-                base: '45%',
-                md: '285',
-              }}
-            >
-              <Input
-                textAlign={'right'}
-                w={{
-                  base: '70%',
-                  md: '100%',
-                }}
-                onChangeText={(duration: string) =>
-                  setFormData({ ...formData, duration: +duration })
-                }
-              />
-              <InputRightAddon>minutes</InputRightAddon>
-            </InputGroup>
-          </VStack>
         </HStack>
       </FormControl>
 
-      <TextArea
-        h={20}
-        placeholder="Event descriptions"
-        w="75%"
-        onChangeText={(description) => {
-          setFormData({ ...formData, description });
-        }}
-        mb="2"
-      />
+      <FormControl isRequired w={'75%'} mb="2">
+        <FormControl.Label>Description</FormControl.Label>
+
+        <TextArea
+          h={20}
+          placeholder="Event description"
+          onChangeText={(description) => {
+            setFormData({ ...formData, description });
+          }}
+          mb="2"
+        />
+      </FormControl>
+
+      <FormControl isRequired w={'75%'} mb="2">
+        <FormControl.Label>Genre (pick all which apply)</FormControl.Label>
+        <Checkbox.Group
+          onChange={(genres) => setFormData({ ...formData, genres })}
+          accessibilityLabel="choose numbers"
+        >
+          <Box w="100%" flexDirection="row" justifyItems="space-between">
+            <Box w="33%">
+              <Checkbox value="Comedy">Comedy</Checkbox>
+            </Box>
+            <Box w="33%">
+              <Checkbox value="Dama">Drama</Checkbox>
+            </Box>
+            <Box w="33%">
+              <Checkbox value="Musical">Musical</Checkbox>
+            </Box>
+          </Box>
+        </Checkbox.Group>
+      </FormControl>
+
+      <NewShowForm />
 
       <Button
         size={'md'}
