@@ -12,19 +12,18 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   const [formData, setFormData] = useState<LoginForm>(loginMock);
 
   const submitHandler = async () => {
-    
+    login(formData).then(console.log);
+    // console.log(promoter)
   }
  
   return (
-    <VStack w={"80%"} justifyContent={"center"}>
+    <VStack>
       <FormControl>
-        <Stack space={"md"} w="100%" maxW="400px" mb={20}>
+        <Stack mt={"-30px"}>
           <Input
             type="email"
-            color="light.100"
-            bg="transparent"
+            bg="#161C29"
             borderColor="transparent"
-            borderBottomColor="light.400"
             size="xl"
             placeholder="Enter email"
             onChangeText={(value: string) =>
@@ -33,10 +32,8 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
           />
           <Input
             type="password"
-            color="light.100"
-            bg="transparent"
+            bg="#161C29"
             borderColor="transparent"
-            borderBottomColor="light.100"
             size="xl"
             placeholder="Enter password"
             onChangeText={(value: string) =>
@@ -47,10 +44,10 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
 
         <Button
           size="lg"
+          mt={"15px"}
           variant="solid"
           colorScheme="primary"
           onPress={submitHandler}
-          mt="-30px"
           mb={5}
         >
           Log in
@@ -59,13 +56,12 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
       <Button
         size="lg"
         variant="outlined"
-        colorScheme="primary"
         onPress={() => {
           setIsNewUser(true);
         }}
         _pressed={{ _text: { color: "light.200" } }}
       >
-        New user? Sign up!
+        <p style={{color: "white",}}>New user? Sign up!</p>        
       </Button>
     </VStack>
   );

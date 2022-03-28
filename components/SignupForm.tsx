@@ -1,77 +1,63 @@
 import * as React from "react";
 import { Button, Input, Stack, FormControl, VStack } from "native-base";
-import { signup, signupMock, SignupForm } from "../../utils/helpers/signup";
-import { focusStyle } from "../../styles/authStyles";
+import { signup, signupMock, SignupForm } from "../utils/helpers/signup";
 import { useState } from "react";
-import { useStatusContext } from "../../services/contexts/StatusContext";
 type Props = {
-  setUser: (user: UserProfile | null) => void;
+  setUser: (user: PromoterProfile | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
   const [formData, setFormData] = useState<SignupForm>(signupMock);
-  const { changeStatus } = useStatusContext();
 
   const submitHandler = async () => {
-    changeStatus("loading");
     signup(formData)
-      .then(setUser)
-      .catch((error) => changeStatus("error", error));
   };
   return (
-    <VStack w={"80%"} justifyContent={"center"}>
+    <VStack>
       <FormControl>
-        <Stack space={"md"} w="100%" maxW="400px" mb={20}>
+        <Stack mt="-30px">
           <Input
             size="xl"
-            bg="transparent"
-            color="light.100"
+            bg="#161C29"
             borderColor="transparent"
             borderBottomColor="light.400"
-            placeholder="First Name"
+            placeholder="Name"
             onChangeText={(value: string) =>
-              setFormData({ ...formData, firstName: value })
+              setFormData({ ...formData, name: value })
             }
-            _focus={focusStyle}
           />
           <Input
             size="xl"
-            bg="transparent"
-            color="light.100"
+            bg="#161C29"
             borderColor="transparent"
             borderBottomColor="light.400"
-            placeholder="Last Name"
+            placeholder="Telephone"
             onChangeText={(value: string) =>
-              setFormData({ ...formData, lastName: value })
+              setFormData({ ...formData, telephone: +value })
             }
-            _focus={focusStyle}
           />
           <Input
             type="email"
             size="xl"
-            bg="transparent"
-            color="light.100"
+            bg="#161C29"
             borderColor="transparent"
             borderBottomColor="light.400"
             placeholder="Enter email"
             onChangeText={(value: string) =>
               setFormData({ ...formData, email: value })
             }
-            _focus={focusStyle}
           />
           <Input
             type="password"
             size="xl"
-            bg="transparent"
-            color="light.100"
+            bg="#161C29"
             borderColor="transparent"
             borderBottomColor="light.400"
             placeholder="Enter password"
             onChangeText={(value: string) =>
               setFormData({ ...formData, password: value })
             }
-            _focus={focusStyle}
           />
         </Stack>
 
@@ -79,7 +65,7 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
           variant="solid"
           colorScheme="primary"
           onPress={submitHandler}
-          mt="-30px"
+          mt={"15px"}
           size="lg"
         >
           Sign up
@@ -95,7 +81,7 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
         }}
         _pressed={{ _text: { color: "light.200" } }}
       >
-        Already have an account? Log in!
+        <p style={{color: "white",}}>New user? Sign up!</p>
       </Button>
     </VStack>
   );

@@ -1,6 +1,6 @@
 import { gql, GraphQLClient } from 'graphql-request';
 
-const apiURL = 'https://tourn.me/usher/api';
+const apiURL = 'http://localhost:4004/graphql';
 const client = new GraphQLClient(apiURL);
 
 export const getJWT = async (
@@ -36,9 +36,10 @@ export const getJWT = async (
 };
 
 export const createPromoter = async (email: string, password: string, name: string, telephone: number) => {
+  console.log('lets create it', email, password, name, telephone)
   const mutation = gql`
-    mutation createPromoter($email: String! $password: String! $name: String! $telephone: Number!) {
-      createPromoter(email: $email password: $password name: $firstName telephone: $lastName) {
+    mutation createPromoter($email: String! $password: String! $name: String! $telephone: Int!) {
+      createPromoter(email: $email password: $password name: $name telephone: $telephone) {
         promoter {
           id
           name
@@ -58,7 +59,7 @@ export const createPromoter = async (email: string, password: string, name: stri
     const { createPromoter } = await client.request(mutation, { email, password, name, telephone });
     if (createPromoter.error) return createPromoter.error as string
     localStorage.setItem('promoter', createPromoter.token);
-
+    console.log(createPromoter);
     return createPromoter.promoter as PromoterProfile;
   } catch (e) {
     return 'Network error while creating a new user';

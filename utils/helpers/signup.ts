@@ -1,8 +1,10 @@
-import { createUser } from "../../services/api/auth"
+import { createPromoter } from "../../services/api/auth"
 
 export const signup = async (formData: SignupForm) => {
-  const { email, password, firstName, lastName } = formData
+  const { email, password, name, telephone } = formData
   const isValid = validateSignup(formData)
+  if (!isValid) return isValid as string;
+  const promoter = await createPromoter(email, password, name, telephone)
 }
 
 const validateSignup = (formData: SignupForm) => {
@@ -10,9 +12,9 @@ const validateSignup = (formData: SignupForm) => {
     return 'Provide valid email';
   } else if (!formData.password) {
     return 'Password is required'
-  } else if (!formData.firstName) {
+  } else if (!formData.name) {
     return 'First name is required'
-  } else if (!formData.lastName) {
+  } else if (!formData.telephone) {
     return 'Last name is required';
   } else if (!formData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
     return 'Email should have email format'
@@ -25,13 +27,13 @@ const validateSignup = (formData: SignupForm) => {
 export type SignupForm = {
   email: string
   password: string
-  firstName: string
-  lastName: string
+  name: string
+  telephone: number
 }
 
 export const signupMock = {
   email: '',
   password: '',
-  firstName: '',
-  lastName: '',
+  name: '',
+  telephone: 0,
 }

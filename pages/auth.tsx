@@ -1,11 +1,10 @@
-import * as React from "react";
-const { useState } = React;
-import { Flex, View, Text, Button } from "native-base";
+import React from "react";
+import { Flex, View, Text, Button, Center } from "native-base";
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import LoginForm from "../components/LoginForm";
-// import LogInForm from "../../components/auth/LogInForm";
-// import SignUpForm from "../../components/auth/SignUpForm";
-import { useEffect } from "react";
+import SignUpForm from "../components/SignupForm";
+import { useEffect, useState } from "react";
 
 type Props = {
   setUser: (user: PromoterProfile | null) => void;
@@ -13,46 +12,41 @@ type Props = {
 
 const Auth = ({ setUser }: Props) => {
   const [isNewUser, setIsNewUser] = useState(false);
-
+  const router = useRouter()
   useEffect(() => {
+    const token = localStorage.getItem('promoter');
+    // if (token) router.push('/index')
   }, []);
 
   return (
-      <Flex
-        w="100%"
-        h="100%"
-        py={"20px"}
-        alignItems={"center"}
-        justifyContent={"space-around"}
-        flexDirection="row"
-      >
-        <View>
-          <Text>Hero area</Text>
-        </View>
-        <View bg="black">
-          <Image
-            src="/images/adaptive-icon.png"
-            alt="Usher icon"
-            width="300px"
-            height="300px"
-          />
-        <View bg="white">
+      <div>
+        <div >
+          {/* <Text>Hero area</Text> */}
+          <Image src="/images/hero.jpg" alt="hero image" layout="fill"/>
+        </div>
+        
+        <Center>
+          <View>
+            <Image
+              src="/images/adaptive-icon.png"
+              alt="Usher icon"
+              width="300px"
+              height="300px"
+              />
+          <View>
 
-        {isNewUser ? (
-          // <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser} />
-          <Text>Sign UP</Text>
-          ) : (
-            // <Text>Log IN</Text>
-            <LoginForm setUser={setUser} setIsNewUser={setIsNewUser} />
-            )}
-        </View>
-        <Button
-          onPress={() => {setIsNewUser(prev => !prev)}}
-          >
-          <Text>Switch</Text>
-        </Button>
-        </View>
-      </Flex>
+          {isNewUser ? (
+            <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser} />
+            // <Text>Sign UP</Text>
+            ) : (
+              // <Text>Log IN</Text>
+              <LoginForm setUser={setUser} setIsNewUser={setIsNewUser} />
+              )}
+          </View>
+          
+          </View>
+        </Center>
+      </div>
   );
 };
 
