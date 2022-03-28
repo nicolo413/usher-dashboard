@@ -1,20 +1,18 @@
-type PromoterProfile = {
-  id: string,
+import { Venue } from "./dbTypes"
+
+export type PromoterProfile = {
+  id: number,
   email: string,
-  password: string,
+  password?: string,
   name: string,
   venues: Venue[],
   telephone: number,
 }
 
-type UserProfile = {
-  id: string,
-  email: string,
-  password: string,
-  first_name: string,
-  last_name: string,
-  created_at: string,
-  favorite_ids: number[]
-  tickets: Ticket[],
-  notifications: Boolean,
+const mockProfile = {
+  id: 1,
+  email: 'codeworksBoss@gmail.com',
+  name: 'Alessandro',
+  venues: [],
+  telephone: 983123456
 }

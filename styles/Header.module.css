@@ -1,0 +1,15 @@
+.fullHeader {
+  margin: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #161C29;
+  width: 100%;
+  min-height: 15%;
+  z-index: 1000;
+  padding: 0 20px;
+}
+
+.logo {
+  margin-left: 20px;
+}

@@ -4,6 +4,7 @@ const path = require("path");
 module.exports = withNativebase({
   dependencies: ["@native-base/icons", "react-native-web-linear-gradient"],
   nextConfig: {
+    images: { domains: ["www.teatrebarcelona.com"],},
     webpack: (config, options) => {
       config.module.rules.push({
         test: /\.ttf$/,

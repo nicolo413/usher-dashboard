@@ -15,6 +15,7 @@ const Auth = ({ setUser }: Props) => {
   const router = useRouter()
   useEffect(() => {
     const token = localStorage.getItem('promoter');
+    
     // if (token) router.push('/index')
   }, []);
 

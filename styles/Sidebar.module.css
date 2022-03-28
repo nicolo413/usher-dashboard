@@ -1,0 +1,8 @@
+.fullSidebar {
+  min-height: 100%;
+  width: 20%;
+  margin-left: 0;
+  float: left;
+  background-color: #161C29;
+  z-index: 1000;
+}

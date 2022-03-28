@@ -1,4 +1,4 @@
-type EventType = {
+export type EventType = {
   id: number,
   name: string,
   price: number,
@@ -16,10 +16,10 @@ type EventType = {
   next_show: Show
 }
 
-type Venue = {
+export type Venue = {
   id: string,
   name: string,
-  external_url?: String,
+  external_url?: string,
   address: String,
   zipcode: String,
   city: String,
@@ -30,15 +30,15 @@ type Venue = {
   promoter_id: number,
 }
 
-type Ticket = {
+export type Ticket = {
   id: string,
   show: Show,
   show_id: string,
   used: boolean,
-  user: User,
+  user_id: string,
 }
 
-type Promoter = {
+export type Promoter = {
   id: number,
   name: String,
   email: String,
@@ -47,7 +47,7 @@ type Promoter = {
   telephone?: number
 }
 
-type Show = {
+export type Show = {
   id?: string,
   date: string,
   active_sale: Boolean,

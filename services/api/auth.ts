@@ -1,7 +1,44 @@
 import { gql, GraphQLClient } from 'graphql-request';
+import { PromoterProfile } from '../../utils/Types/userTypes';
 
 const apiURL = 'http://localhost:4004/graphql';
 const client = new GraphQLClient(apiURL);
+
+export const getPromoterProfile = async () => {
+  const token = localStorage.getItem('promoter');
+  if(!token) return null;
+  client.setHeader('authorization', `Bearer ${token}`);
+
+  const query = gql`
+    query GetPromoter {
+      getPromoter {
+        promoter {
+          id
+          name
+          email
+          telephone
+          venues {
+            name
+            address
+            zipcode
+            city
+            external_url
+          }
+        } 
+        error
+        token
+      }
+    }
+  `;
+
+  try {
+    const { getPromoter } = await client.request(query);
+    if (getPromoter.error) return getPromoter.error
+    return getPromoter.promoter
+  } catch (error) {
+    console.error(error)
+  }
+} 
 
 export const getJWT = async (
   email: string,

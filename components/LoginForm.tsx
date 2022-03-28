@@ -1,7 +1,10 @@
 import * as React from "react";
 import { Button, Stack, Input, FormControl, VStack } from "native-base";
 import { login, LoginForm, loginMock } from "../utils/helpers/login";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { PromoterContext } from "../services/contexts/UserContext";
+import { useRouter } from "next/router";
+import { PromoterProfile } from "../utils/Types/userTypes";
 
 type Props = {
   setUser: (user: PromoterProfile | null) => void;
@@ -9,42 +12,56 @@ type Props = {
 };
 
 const LogInForm = ({ setUser, setIsNewUser }: Props) => {
+  const router = useRouter();
   const [formData, setFormData] = useState<LoginForm>(loginMock);
+  //@ts-ignore
+  const { promoter, setPromoter } = useContext(PromoterContext);  
 
   const submitHandler = async () => {
-    login(formData).then(console.log);
-    // console.log(promoter)
+    login(formData).then(promoter => {
+      setPromoter(promoter)
+      router.push('/dashboard')
+    });
+
   }
+  console.log(promoter)
  
   return (
     <VStack>
       <FormControl>
-        <Stack mt={"-30px"}>
+        <Stack mt={"-60px"}>
           <Input
             type="email"
-            bg="#161C29"
+            color="black"
+            bg="white"
             borderColor="transparent"
             size="xl"
             placeholder="Enter email"
             onChangeText={(value: string) =>
               setFormData({ ...formData, email: value })
             }
+            _focus={{bg: 'white'}}
+            _hover={{bg: 'white'}}
           />
           <Input
+            mt="8px"
+            color="black"
             type="password"
-            bg="#161C29"
+            bg="white"
             borderColor="transparent"
             size="xl"
             placeholder="Enter password"
             onChangeText={(value: string) =>
               setFormData({ ...formData, password: value })
             }
+            _focus={{bg: 'white'}}
+            _hover={{bg: 'white'}}
           />
         </Stack>
 
         <Button
           size="lg"
-          mt={"15px"}
+          mt={"30px"}
           variant="solid"
           colorScheme="primary"
           onPress={submitHandler}

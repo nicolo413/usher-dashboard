@@ -2,6 +2,7 @@ import * as React from "react";
 import { Button, Input, Stack, FormControl, VStack } from "native-base";
 import { signup, signupMock, SignupForm } from "../utils/helpers/signup";
 import { useState } from "react";
+import { PromoterProfile } from "../utils/Types/userTypes";
 type Props = {
   setUser: (user: PromoterProfile | null) => void;
   setIsNewUser: React.Dispatch<React.SetStateAction<boolean>>;
@@ -16,10 +17,10 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
   return (
     <VStack>
       <FormControl>
-        <Stack mt="-30px">
+        <Stack mt="-60px">
           <Input
             size="xl"
-            bg="#161C29"
+            bg="white"
             borderColor="transparent"
             borderBottomColor="light.400"
             placeholder="Name"
@@ -29,7 +30,8 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
           />
           <Input
             size="xl"
-            bg="#161C29"
+            mt="8px"
+            bg="white"
             borderColor="transparent"
             borderBottomColor="light.400"
             placeholder="Telephone"
@@ -39,8 +41,9 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
           />
           <Input
             type="email"
+            mt="8px"
             size="xl"
-            bg="#161C29"
+            bg="white"
             borderColor="transparent"
             borderBottomColor="light.400"
             placeholder="Enter email"
@@ -50,8 +53,9 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
           />
           <Input
             type="password"
+            mt="8px"
             size="xl"
-            bg="#161C29"
+            bg="white"
             borderColor="transparent"
             borderBottomColor="light.400"
             placeholder="Enter password"
@@ -62,10 +66,10 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
         </Stack>
 
         <Button
+          mt="30px"
           variant="solid"
           colorScheme="primary"
           onPress={submitHandler}
-          mt={"15px"}
           size="lg"
         >
           Sign up
@@ -81,7 +85,7 @@ const SignUpForm = ({ setUser, setIsNewUser }: Props) => {
         }}
         _pressed={{ _text: { color: "light.200" } }}
       >
-        <p style={{color: "white",}}>New user? Sign up!</p>
+        <p style={{color: "white",}}>Already have an account? Log In!</p>
       </Button>
     </VStack>
   );
