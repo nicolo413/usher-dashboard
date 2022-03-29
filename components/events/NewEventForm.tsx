@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -12,20 +12,23 @@ import {
   Select,
   TextArea,
   VStack,
-} from 'native-base';
-import moment from 'moment';
+} from "native-base";
+import moment from "moment";
 
-import NewShowForm from './showForm';
-import { showType } from '../../utils/types/formTypes';
+import NewShowForm from "./showForm";
+import { showType } from "../../utils/types/formTypes";
+import ImagesInput from "./ImagesInput";
 
 type eventDataType = {
   name: string | undefined;
   price: number | undefined;
   type: string | undefined;
+  genres: string[] | undefined;
+  image: any;
+  poster: any;
   language: string | undefined;
   duration: number | undefined;
   description: string | undefined;
-  genres: string[] | undefined;
   external_url: string | undefined;
 };
 
@@ -34,8 +37,8 @@ const defaultState = {
   price: undefined,
   type: undefined,
   genres: undefined,
-  //image: undefined,
-  //poster: undefined,
+  image: undefined,
+  poster: undefined,
   language: undefined,
   duration: undefined,
   description: undefined,
@@ -43,23 +46,12 @@ const defaultState = {
 };
 
 function NewEventForm() {
-  const [formData, setFormData] = useState<eventDataType>({
-    name: undefined,
-    price: undefined,
-    type: undefined,
-    genres: undefined,
-    //image: undefined,
-    //poster: undefined,
-    language: undefined,
-    duration: undefined,
-    description: undefined,
-    external_url: undefined,
-  });
+  const [formData, setFormData] = useState<eventDataType>(defaultState);
 
   const [shows, setShows] = useState<showType[]>([]);
 
   const [show, setShow] = useState({
-    date: moment(Date.now()).format('yyyy-MM-DDThh:mm'),
+    date: moment(Date.now()).format("yyyy-MM-DDThh:mm"),
     active_sale: false,
     available_seats: 0,
   });
@@ -67,7 +59,7 @@ function NewEventForm() {
   const handleSubmit = () => {
     if (isValid()) {
       console.log(show);
-    } else console.log('Invalid data');
+    } else console.log("Invalid data");
   };
 
   const isValid = () => {
@@ -77,7 +69,7 @@ function NewEventForm() {
 
   return (
     <Center w="full" h="full">
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Name</FormControl.Label>
         <Input
           isFullWidth
@@ -90,7 +82,7 @@ function NewEventForm() {
           onChangeText={(name) => setFormData({ ...formData, name })}
         />
       </FormControl>
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Event type</FormControl.Label>
         <Select
           placeholder="Select type of event"
@@ -102,13 +94,13 @@ function NewEventForm() {
           <Select.Item label="Circus" value="CIRCUS" />
         </Select>
       </FormControl>
-      <FormControl isRequired w={'75%'} mb="2">
-        <HStack justifyContent={'space-between'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
+        <HStack justifyContent={"space-between"} mb="2">
           <VStack w="25%">
             <FormControl.Label>Price</FormControl.Label>
             <InputGroup>
               <Input
-                textAlign={'right'}
+                textAlign={"right"}
                 onChangeText={(price: string) =>
                   setFormData({ ...formData, price: +price })
                 }
@@ -122,7 +114,7 @@ function NewEventForm() {
 
             <InputGroup>
               <Input
-                textAlign={'right'}
+                textAlign={"right"}
                 onChangeText={(duration: string) =>
                   setFormData({ ...formData, duration: +duration })
                 }
@@ -148,7 +140,7 @@ function NewEventForm() {
         </HStack>
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Description</FormControl.Label>
 
         <TextArea
@@ -161,7 +153,7 @@ function NewEventForm() {
         />
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Genre (pick all which apply)</FormControl.Label>
         <Checkbox.Group
           onChange={(genres) => setFormData({ ...formData, genres })}
@@ -181,7 +173,7 @@ function NewEventForm() {
         </Checkbox.Group>
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>External URL</FormControl.Label>
         <Input
           isFullWidth
@@ -195,10 +187,12 @@ function NewEventForm() {
         />
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2" mt="4">
+      <ImagesInput formData={formData} setFormData={setFormData}></ImagesInput>
+
+      <FormControl isRequired w={"75%"} mb="2" mt="4">
         <HStack alignItems="center" justifyContent="space-between">
           <FormControl.Label mr="6">Dates</FormControl.Label>
-          <Button onPress={() => console.log('adding a new date')} size={'md'}>
+          <Button onPress={() => console.log("adding a new date")} size={"md"}>
             Add another date ➕
           </Button>
         </HStack>
@@ -206,7 +200,7 @@ function NewEventForm() {
       </FormControl>
 
       <Button
-        size={'md'}
+        size={"md"}
         onPress={handleSubmit}
         // isLoading
         spinnerPlacement="end"
