@@ -15,19 +15,19 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   const router = useRouter();
   const [formData, setFormData] = useState<LoginForm>(loginMock);
   //@ts-ignore
-  const { promoter, populatePromoter } = usePromoterContext();  
+  const { promoter, populatePromoter } = usePromoterContext();
 
   const submitHandler = async () => {
-    login(formData).then((_promoter)  => {
+    login(formData).then((_promoter) => {
       populatePromoter(_promoter as PromoterProfile)
       router.push('/dashboard')
     });
 
   }
   console.log(promoter)
- 
+
   return (
-    <VStack>
+    <VStack alignContent={'center'}>
       <FormControl>
         <Stack mt={"-60px"}>
           <Input
@@ -40,8 +40,8 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
             onChangeText={(value: string) =>
               setFormData({ ...formData, email: value })
             }
-            _focus={{bg: 'white'}}
-            _hover={{bg: 'white'}}
+            _focus={{ bg: 'white' }}
+            _hover={{ bg: 'white' }}
           />
           <Input
             mt="8px"
@@ -54,8 +54,8 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
             onChangeText={(value: string) =>
               setFormData({ ...formData, password: value })
             }
-            _focus={{bg: 'white'}}
-            _hover={{bg: 'white'}}
+            _focus={{ bg: 'white' }}
+            _hover={{ bg: 'white' }}
           />
         </Stack>
 
@@ -78,7 +78,7 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
         }}
         _pressed={{ _text: { color: "light.200" } }}
       >
-        <p style={{color: "white",}}>New user? Sign up!</p>        
+        <p style={{ color: "white", }}>New user? Sign up!</p>
       </Button>
     </VStack>
   );

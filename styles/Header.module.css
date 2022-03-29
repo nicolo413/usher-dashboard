@@ -3,11 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #161C29;
+  background-color: #070c15;
+  box-shadow: -4px -3px 10px 10px #6b87ac18;
   width: 100%;
-  min-height: 15%;
-  z-index: 1000;
+  height: 8vh;
+  z-index: 999;
   padding: 0 20px;
+  color: #f2f2f2;
+  font-size: 1.3rem;
 }
 
 .logo {

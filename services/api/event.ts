@@ -1,6 +1,6 @@
 import { gql, GraphQLClient } from 'graphql-request';
 
-const apiURL = 'http://localhost:4004/graphql';
+const apiURL = 'https://tourn.me/usher/api';
 const client = new GraphQLClient(apiURL);
 
 export const addNewEvent = async (event: EventInput, shows: showType[]) => {

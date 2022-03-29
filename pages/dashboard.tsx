@@ -1,27 +1,29 @@
 import * as React from 'react';
-import { useContext, useEffect } from 'react';
 import VenueList from '../components/Dashboard/VenueList';
 import styles from '../styles/Dashboard.module.css';
-import { getPromoterProfile } from '../services/api/auth';
 import { usePromoterContext } from '../services/contexts/UserContext';
+import { useEffect } from 'react';
+import { getPromoterProfile } from '../services/api/auth';
 import BarChart from '../components/BarChart';
 
 const Dashboard = () => {
-  //@ts-ignore
   const { promoter, populatePromoter } = usePromoterContext();
 
   useEffect(() => {
-    getPromoterProfile().then(populatePromoter);
+    getPromoterProfile()
+      .then((prom) => {
+        populatePromoter(prom);
+      })
+      .catch((error) => console.error(error));
   }, []);
-  console.log(promoter);
+
+  if (!promoter) return null;
   return (
     <div className={styles.mainContainer}>
-      {promoter ? (
-        <div>
-          <VenueList venues={promoter.venues} />
-          <BarChart weeklyData={promoter.stats.week.by_event} />
-        </div>
-      ) : null}
+      <h2 className={styles.venueTitle}>Your Venues:</h2>
+      <VenueList venues={promoter.venues} />
+      <h2 className={styles.statsTitle}>Your Stats:</h2>
+      <BarChart weeklyData={promoter.stats.week.by_event} />
     </div>
   );
 };

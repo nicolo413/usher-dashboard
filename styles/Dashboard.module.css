@@ -1,0 +1,13 @@
+.mainContainer {
+  padding-top: 1.5rem;
+  max-width: 90vw;
+}
+
+.venueTitle {
+  margin-left: 1rem;
+}
+
+.statsTitle {
+  margin-left: 1rem;
+  margin-top: 300px;
+}

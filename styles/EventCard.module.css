@@ -1,0 +1,49 @@
+.mainButton {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 0;
+  border: none;
+  background-color: #1a2232;
+  border-radius: 8px;
+}
+
+.mainButton:hover {
+  transform: scale(1.02);
+  box-shadow: 0px -0px 2px 2px #6b87ac52;
+}
+
+.mainButton:active {
+  transform: scale(0.98);
+}
+
+.card {
+  border-radius: 20px;
+  background-color: #1a2232;
+  display: flex;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.image {
+  margin-left: 8px;
+  padding: 5px;
+  align-self: center;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #bfbfbf;
+}
+
+.content {
+  color: #fafafa;
+  text-align: left;
+  height: 100%;
+  padding: 10px 20px;
+}
+
+.price {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
