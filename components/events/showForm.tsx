@@ -11,6 +11,7 @@ import {
   InputRightAddon,
   Switch,
 } from 'native-base';
+import { right } from '@cloudinary/url-gen/qualifiers/textAlignment';
 
 type showType = {
   date: string;
@@ -19,11 +20,12 @@ type showType = {
 };
 
 type showFormProps = {
-  show: showType;
-  setShow: React.Dispatch<React.SetStateAction<showType>>;
+  shows: showType[];
+  setShows: React.Dispatch<React.SetStateAction<showType[]>>;
+  index: number;
 };
 
-const NewShowForm = ({ show, setShow }: showFormProps) => {
+const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
   return (
     <HStack
       style={{
@@ -36,8 +38,15 @@ const NewShowForm = ({ show, setShow }: showFormProps) => {
         <FormControl.Label>Time and date</FormControl.Label>
         <input
           type="datetime-local"
-          value={show.date}
-          onChange={(event) => setShow({ ...show, date: event.target.value })}
+          value={shows[index].date}
+          onChange={(event) => {
+            const updatedShow = { ...shows[index], date: event.target.value };
+            const updatedShows = shows.map((show, idx) => {
+              if (idx === index) return updatedShow;
+              return show;
+            });
+            setShows(updatedShows);
+          }}
           style={{
             height: 40,
             fontFamily: 'Roboto, sans-serif',
@@ -49,13 +58,21 @@ const NewShowForm = ({ show, setShow }: showFormProps) => {
       <Box>
         <FormControl.Label>Available seats</FormControl.Label>
         <InputGroup>
-          <Input
-            textAlign={'right'}
-            value={String(show.available_seats)}
-            onChangeText={(seats: string) =>
-              setShow({ ...show, available_seats: +seats })
-            }
-            style={{ height: 40, width: '90%' }}
+          <input
+            type={'number'}
+            style={{ textAlign: 'right', height: 40, width: '90%' }}
+            value={String(shows[index].available_seats)}
+            onChange={(seats) => {
+              const updatedShow = {
+                ...shows[index],
+                available_seats: +seats.target.value,
+              };
+              const updatedShows = shows.map((show, idx) => {
+                if (idx === index) return updatedShow;
+                return show;
+              });
+              setShows(updatedShows);
+            }}
           />
           <InputRightAddon>seats</InputRightAddon>
         </InputGroup>
@@ -65,10 +82,15 @@ const NewShowForm = ({ show, setShow }: showFormProps) => {
         <FormControl.Label>Active sale</FormControl.Label>
         <Switch
           size="md"
-          value={show.active_sale}
+          value={shows[index].active_sale}
           onToggle={() => {
-            const active_sale = !show.active_sale;
-            setShow({ ...show, active_sale });
+            const active_sale = !shows[index].active_sale;
+            const updatedShow = { ...shows[index], active_sale };
+            const updatedShows = shows.map((show, idx) => {
+              if (idx === index) return updatedShow;
+              return show;
+            });
+            setShows(updatedShows);
           }}
         ></Switch>
       </Box>
