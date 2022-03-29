@@ -1,6 +1,9 @@
 .container {
   width: 500px;
   margin: 20px;
-  flex: 1;
   background-color: red;
+}
+
+.card {
+  width: 500px;
 }

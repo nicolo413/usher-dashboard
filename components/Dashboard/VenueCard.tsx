@@ -15,17 +15,17 @@ const VenueCard = ({ venue }: Props) => {
 
   return (
     <div className={styles.container}>
+        <button className={styles.card}>
       <Link href={`/${venue.id}`} passHref>
-        <button>
-          <div className={styles.card}>
-            <div className={styles.image}>
+          <div>
+            <div>
               {venue.external_url ?
-                <Image className={styles.equilibrium} src={venue.external_url} alt="Venue image" width="230px" height="100px" />
+                <Image src={venue.external_url} alt="Venue image" width="230px" height="100px" />
                 : null
               }
             </div>
-            <div className={styles.content}>
-              <div className={styles.mainContent}>
+            <div>
+              <div>
                 <h3>
                   {venue.name}
                 </h3>
@@ -33,15 +33,15 @@ const VenueCard = ({ venue }: Props) => {
                   {venue.address}
                 </p>
               </div>
-              <div className={styles.features}>
+              <div>
                 {venue.zipcode}
               </div>
             </div>
             <hr />
           </div>
 
-        </button>
       </Link>
+        </button>
     </div>
   )
 }

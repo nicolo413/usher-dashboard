@@ -1,11 +1,12 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import { PromoterProfile } from '../../utils/Types/userTypes';
 
-const apiURL = 'https://tourn.me/usher/api';
+const apiURL = 'http://localhost:4004/graphql';
 const client = new GraphQLClient(apiURL);
 
 export const getPromoterProfile = async () => {
   const token = localStorage.getItem('promoter');
+  console.log('getting promoter')
   if (!token) return null;
   client.setHeader('authorization', `Bearer ${token}`);
 
@@ -17,6 +18,30 @@ export const getPromoterProfile = async () => {
           name
           email
           telephone
+          stats {
+            day {
+              total {
+                sold_tickets
+                seats
+              }
+            }
+            week {
+              total {
+                sales
+              }
+            }
+            month {
+              total {
+                seats
+              }
+            }
+            year {
+              total {
+                seats
+    
+              }
+            }
+          }
           venues {
             id
             name
@@ -24,7 +49,21 @@ export const getPromoterProfile = async () => {
             zipcode
             city
             external_url
+            events {
+              id
+              name
+              price
+              type
+              genres
+              image
+              poster
+              language
+              duration
+              description
+
+            }
           }
+        
         } 
         error
         token
@@ -34,6 +73,7 @@ export const getPromoterProfile = async () => {
 
   try {
     const { getPromoter } = await client.request(query);
+    console.log(getPromoter);
     if (getPromoter.error) return getPromoter.error
     return getPromoter.promoter
   } catch (error) {
@@ -54,7 +94,25 @@ export const getJWT = async (
           email
           telephone
           venues {
+            id
             name
+            address
+            zipcode
+            city
+            external_url
+            events {
+              id
+              name
+              price
+              type
+              genres
+              image
+              poster
+              language
+              duration
+              description
+              
+            }
           }
         }
         error
