@@ -36,7 +36,7 @@ const NewShowForm = ({ show, setShow }: showFormProps) => {
         <FormControl.Label>Time and date</FormControl.Label>
         <input
           type="datetime-local"
-          value={moment(Date.now()).format('yyyy-MM-DDThh:mm')}
+          value={show.date}
           onChange={(event) => setShow({ ...show, date: event.target.value })}
           style={{
             height: 40,

@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -12,10 +13,10 @@ import {
   TextArea,
   VStack,
 } from 'native-base';
+import moment from 'moment';
 
-import React, { useState } from 'react';
-import CircleButton from '../CircleButton';
 import NewShowForm from './showForm';
+import { showType } from '../../utils/types/formTypes';
 
 type eventDataType = {
   name: string | undefined;
@@ -39,7 +40,6 @@ const defaultState = {
   duration: undefined,
   description: undefined,
   external_url: undefined,
-  //shows: undefined,
 };
 
 function NewEventForm() {
@@ -54,11 +54,12 @@ function NewEventForm() {
     duration: undefined,
     description: undefined,
     external_url: undefined,
-    //shows: undefined,
   });
 
+  const [shows, setShows] = useState<showType[]>([]);
+
   const [show, setShow] = useState({
-    date: '',
+    date: moment(Date.now()).format('yyyy-MM-DDThh:mm'),
     active_sale: false,
     available_seats: 0,
   });
