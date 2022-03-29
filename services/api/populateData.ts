@@ -23,7 +23,6 @@ export const generateTicket = async (showId: string, nSeats: number) => {
   `;
 
   try {
-    console.log(nSeats);
     const { createTickets } = await client.request(mutation, {
       showId,
       nSeats,

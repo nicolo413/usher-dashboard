@@ -25,7 +25,24 @@ export const getPromoterProfile = async () => {
             city
             external_url
           }
-        } 
+          stats {
+            week {
+              total {
+                seats
+                sold_tickets
+                sales
+              }
+              by_event
+            }
+            day {
+              total {
+                seats
+                sold_tickets
+                sales
+              }
+            }
+          }
+        }
         error
         token
       }
@@ -34,12 +51,12 @@ export const getPromoterProfile = async () => {
 
   try {
     const { getPromoter } = await client.request(query);
-    if (getPromoter.error) return getPromoter.error
-    return getPromoter.promoter
+    if (getPromoter.error) return getPromoter.error;
+    return getPromoter.promoter;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 export const getJWT = async (
   email: string,
@@ -55,6 +72,23 @@ export const getJWT = async (
           telephone
           venues {
             name
+          }
+          stats {
+            week {
+              total {
+                seats
+                sold_tickets
+                sales
+              }
+              by_event
+            }
+            day {
+              total {
+                seats
+                sold_tickets
+                sales
+              }
+            }
           }
         }
         error
@@ -73,11 +107,26 @@ export const getJWT = async (
   }
 };
 
-export const createPromoter = async (email: string, password: string, name: string, telephone: number) => {
-  console.log('lets create it', email, password, name, telephone)
+export const createPromoter = async (
+  email: string,
+  password: string,
+  name: string,
+  telephone: number
+) => {
+  console.log('lets create it', email, password, name, telephone);
   const mutation = gql`
-    mutation createPromoter($email: String! $password: String! $name: String! $telephone: Int!) {
-      createPromoter(email: $email password: $password name: $name telephone: $telephone) {
+    mutation createPromoter(
+      $email: String!
+      $password: String!
+      $name: String!
+      $telephone: Int!
+    ) {
+      createPromoter(
+        email: $email
+        password: $password
+        name: $name
+        telephone: $telephone
+      ) {
         promoter {
           id
           name
@@ -85,6 +134,23 @@ export const createPromoter = async (email: string, password: string, name: stri
           telephone
           venues {
             name
+          }
+          stats {
+            week {
+              total {
+                seats
+                sold_tickets
+                sales
+              }
+              by_event
+            }
+            day {
+              total {
+                seats
+                sold_tickets
+                sales
+              }
+            }
           }
         }
         error
@@ -94,8 +160,13 @@ export const createPromoter = async (email: string, password: string, name: stri
   `;
 
   try {
-    const { createPromoter } = await client.request(mutation, { email, password, name, telephone });
-    if (createPromoter.error) return createPromoter.error as string
+    const { createPromoter } = await client.request(mutation, {
+      email,
+      password,
+      name,
+      telephone,
+    });
+    if (createPromoter.error) return createPromoter.error as string;
     localStorage.setItem('promoter', createPromoter.token);
     console.log(createPromoter);
     return createPromoter.promoter as PromoterProfile;
