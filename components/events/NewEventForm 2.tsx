@@ -18,7 +18,6 @@ import moment from "moment";
 import NewShowForm from "./showForm";
 import ImagesInput from "./ImagesInput";
 import { uploadImage } from "../../utils/helpers/images";
-import { addNewEvent } from "../../services/api/event";
 
 const defaultState = {
   name: undefined,
@@ -59,14 +58,13 @@ function NewEventForm() {
         const imageURL = uploadImage(formData.image, "usher-image");
         const posterURL = uploadImage(formData.poster, "usher-poster");
         Promise.all([imageURL, posterURL])
-          .then(async (result) => {
-            const newEvent: EventInput = {
+          .then((result) => {
+            const newEvent = {
               ...formData,
-              image: result[0]!,
-              poster: result[1]!,
-              venue_id: "095b1910-1c20-41e6-a7a3-88cb0bd1bc7a",
+              image: result[0],
+              poster: result[1],
+              venue_id: "",
             };
-            await addNewEvent(newEvent, shows);
           })
           .catch(console.error);
       }

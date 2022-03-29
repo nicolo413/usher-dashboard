@@ -1,12 +1,12 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import { PromoterProfile } from '../../utils/Types/userTypes';
 
-const apiURL = 'http://localhost:4004/graphql';
+const apiURL = 'https://tourn.me/usher/api';
 const client = new GraphQLClient(apiURL);
 
 export const getPromoterProfile = async () => {
   const token = localStorage.getItem('promoter');
-  if(!token) return null;
+  if (!token) return null;
   client.setHeader('authorization', `Bearer ${token}`);
 
   const query = gql`
@@ -39,7 +39,7 @@ export const getPromoterProfile = async () => {
   } catch (error) {
     console.error(error)
   }
-} 
+}
 
 export const getJWT = async (
   email: string,
