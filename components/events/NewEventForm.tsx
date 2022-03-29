@@ -16,21 +16,7 @@ import {
 import moment from "moment";
 
 import NewShowForm from "./showForm";
-import { showType } from "../../utils/types/formTypes";
 import ImagesInput from "./ImagesInput";
-
-type eventDataType = {
-  name: string | undefined;
-  price: number | undefined;
-  type: string | undefined;
-  genres: string[] | undefined;
-  image: any;
-  poster: any;
-  language: string | undefined;
-  duration: number | undefined;
-  description: string | undefined;
-  external_url: string | undefined;
-};
 
 const defaultState = {
   name: undefined,
