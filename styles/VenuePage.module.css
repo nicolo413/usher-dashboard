@@ -4,7 +4,6 @@
 }
 
 .eventList {
-  background-color: #FAFAFA;
   display: flex;
-  flex-direction: column;;
+  flex-direction: column;
 }

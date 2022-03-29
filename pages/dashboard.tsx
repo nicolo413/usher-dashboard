@@ -1,26 +1,19 @@
-import * as React from 'react';
-import { useContext, useEffect } from 'react';
-import VenueList from '../components/Dashboard/VenueList';
-import styles from '../styles/Dashboard.module.css'
-import { getPromoterProfile } from '../services/api/auth';
-import { usePromoterContext } from '../services/contexts/UserContext';
+import * as React from "react";
+import VenueList from "../components/Dashboard/VenueList";
+import styles from "../styles/Dashboard.module.css";
+import { usePromoterContext } from "../services/contexts/UserContext";
 
 const Dashboard = () => {
-  //@ts-ignore
-  const {promoter, populatePromoter} = usePromoterContext();
+  const { promoter, populatePromoter } = usePromoterContext();
 
-  useEffect(() => {
-    getPromoterProfile().then(populatePromoter);
-  }, [])
-  console.log(promoter);
+  if (!promoter) return null;
   return (
-  <div className={styles.mainContainer}>
-    { promoter ?
-    <VenueList venues={promoter.venues}/>
-    : null
-    }
-  </div>
-  )
-}
+    <div className={styles.mainContainer}>
+      <h2 className={styles.venueTitle}>Your Venues:</h2>
+      <VenueList venues={promoter.venues} />
+      <h2 className={styles.statsTitle}>Your Stats:</h2>
+    </div>
+  );
+};
 
-export default Dashboard
+export default Dashboard;

@@ -1,5 +1,8 @@
 .listContainer {
+  position: absolute;
   overflow-x: scroll;
-  width: 80vw;
+  width: 100vw;
+  left: 0;
+  padding-left: 010%;
   display: flex;
 }

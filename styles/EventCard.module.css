@@ -1,4 +1,3 @@
-
 .mainButton {
   margin-top: 10px;
   margin-left: 10px;
@@ -20,10 +19,11 @@
 }
 
 .content {
-  color: #FAFAFA;
+  color: #fafafa;
   padding-left: 10px;
   text-align: left;
   flex: 2;
+  height: 100%;
 }
 
 .price {
