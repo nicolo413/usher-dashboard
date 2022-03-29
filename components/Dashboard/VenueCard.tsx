@@ -20,24 +20,21 @@ const VenueCard = ({ venue }: Props) => {
           <div>
             <div>
               {venue.external_url ?
-                <Image src={venue.external_url} alt="Venue image" width="230px" height="100px" />
+                <Image className={styles.venueImage} src={venue.external_url} alt="Venue image" width="310px" height="130px" />
                 : null
               }
             </div>
-            <div>
+            <div className={styles.venueContent}>
               <div>
-                <h3>
+                <h3 className={styles.venueTitle}>
                   {venue.name}
                 </h3>
-                <p>
+                <p className={styles.address}>
                   {venue.address}
                 </p>
               </div>
-              <div>
-                {venue.zipcode}
-              </div>
+              <div className={styles.badge}>THEATER</div>
             </div>
-            <hr />
           </div>
 
       </Link>
