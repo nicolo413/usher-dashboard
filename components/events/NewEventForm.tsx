@@ -9,16 +9,12 @@ import {
   InputGroup,
   InputRightAddon,
   Select,
-  Slider,
   TextArea,
-  TextField,
   VStack,
 } from 'native-base';
 
-import React, { isValidElement, useState } from 'react';
-import { AccessibilityInfo } from 'react-native';
-import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
-import moment from 'moment';
+import React, { useState } from 'react';
+import CircleButton from '../CircleButton';
 import NewShowForm from './showForm';
 
 type eventDataType = {
@@ -29,6 +25,7 @@ type eventDataType = {
   duration: number | undefined;
   description: string | undefined;
   genres: string[] | undefined;
+  external_url: string | undefined;
 };
 
 const defaultState = {
@@ -41,7 +38,7 @@ const defaultState = {
   language: undefined,
   duration: undefined,
   description: undefined,
-  //external_url: undefined,
+  external_url: undefined,
   //shows: undefined,
 };
 
@@ -56,21 +53,19 @@ function NewEventForm() {
     language: undefined,
     duration: undefined,
     description: undefined,
-    //external_url: undefined,
+    external_url: undefined,
     //shows: undefined,
   });
 
-  // const handleInputChange = (event: React.ChangeEvent) => {
-  //   const target = event.target;
-  //   // TODO: handle different target types
-  //   const value = target.value;
-  //   const name = target.name;
-  //   setFormData({ [name]: value });
-  // };
+  const [show, setShow] = useState({
+    date: '',
+    active_sale: false,
+    available_seats: 0,
+  });
 
   const handleSubmit = () => {
     if (isValid()) {
-      console.log(formData);
+      console.log(show);
     } else console.log('Invalid data');
   };
 
@@ -185,7 +180,29 @@ function NewEventForm() {
         </Checkbox.Group>
       </FormControl>
 
-      <NewShowForm />
+      <FormControl isRequired w={'75%'} mb="2">
+        <FormControl.Label>External URL</FormControl.Label>
+        <Input
+          isFullWidth
+          size="md"
+          type="text"
+          placeholder="Enter your event's site"
+          value={formData.external_url}
+          onChangeText={(external_url) =>
+            setFormData({ ...formData, external_url })
+          }
+        />
+      </FormControl>
+
+      <FormControl isRequired w={'75%'} mb="2" mt="4">
+        <HStack alignItems="center" justifyContent="space-between">
+          <FormControl.Label mr="6">Dates</FormControl.Label>
+          <Button onPress={() => console.log('adding a new date')} size={'md'}>
+            Add another date ➕
+          </Button>
+        </HStack>
+        <NewShowForm show={show} setShow={setShow} />
+      </FormControl>
 
       <Button
         size={'md'}

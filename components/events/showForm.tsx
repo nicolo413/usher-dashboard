@@ -1,62 +1,78 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import {
+  Box,
   Center,
+  Checkbox,
   FormControl,
+  HStack,
   Input,
   InputGroup,
   InputRightAddon,
   Switch,
 } from 'native-base';
 
-const NewShowForm = () => {
-  const [show, setShow] = useState({
-    date: '',
-    active_sale: false,
-    available_seats: 0,
-  });
+type showType = {
+  date: string;
+  active_sale: boolean;
+  available_seats: number;
+};
 
+type showFormProps = {
+  show: showType;
+  setShow: React.Dispatch<React.SetStateAction<showType>>;
+};
+
+const NewShowForm = ({ show, setShow }: showFormProps) => {
   return (
-    <Center
+    <HStack
       style={{
-        width: 240,
-        backgroundColor: 'red',
-        borderRadius: 12,
-        shadowOffset: { width: 4, height: 4 },
-        shadowColor: 'lightgray',
-        shadowOpacity: 0.2,
-        padding: 5,
-        marginBottom: 15,
+        width: '100%',
+        marginVertical: 15,
+        justifyContent: 'space-between',
       }}
     >
-      <FormControl.Label>Time and date</FormControl.Label>
-      <input
-        type="datetime-local"
-        value={moment(Date.now()).format('yyyy-MM-DDThh:mm')}
-        onChange={(event) => setShow({ ...show, date: event.target.value })}
-        style={{
-          height: 40,
-          width: '90%',
-          fontFamily: 'Roboto, sans-serif',
-          textAlign: 'center',
-        }}
-      />
-
-      <FormControl.Label>Available seats</FormControl.Label>
-      <InputGroup>
-        <Input
-          textAlign={'right'}
-          onChangeText={(seats: string) =>
-            setShow({ ...show, available_seats: +seats })
-          }
-          style={{ height: 40, width: '90%' }}
+      <Box>
+        <FormControl.Label>Time and date</FormControl.Label>
+        <input
+          type="datetime-local"
+          value={moment(Date.now()).format('yyyy-MM-DDThh:mm')}
+          onChange={(event) => setShow({ ...show, date: event.target.value })}
+          style={{
+            height: 40,
+            fontFamily: 'Roboto, sans-serif',
+            textAlign: 'center',
+          }}
         />
-        <InputRightAddon>seats</InputRightAddon>
-      </InputGroup>
+      </Box>
 
-      <FormControl.Label>Active sale</FormControl.Label>
-      <Switch size="md"></Switch>
-    </Center>
+      <Box>
+        <FormControl.Label>Available seats</FormControl.Label>
+        <InputGroup>
+          <Input
+            textAlign={'right'}
+            value={String(show.available_seats)}
+            onChangeText={(seats: string) =>
+              setShow({ ...show, available_seats: +seats })
+            }
+            style={{ height: 40, width: '90%' }}
+          />
+          <InputRightAddon>seats</InputRightAddon>
+        </InputGroup>
+      </Box>
+
+      <Box alignItems="center">
+        <FormControl.Label>Active sale</FormControl.Label>
+        <Switch
+          size="md"
+          value={show.active_sale}
+          onToggle={() => {
+            const active_sale = !show.active_sale;
+            setShow({ ...show, active_sale });
+          }}
+        ></Switch>
+      </Box>
+    </HStack>
   );
 };
 
