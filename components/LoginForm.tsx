@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Button, Stack, Input, FormControl, VStack } from "native-base";
 import { login, LoginForm, loginMock } from "../utils/helpers/login";
-import { useState, useContext } from "react";
-import { PromoterContext, usePromoterContext } from "../services/contexts/UserContext";
+import { useState } from "react";
+import { usePromoterContext } from "../services/contexts/UserContext";
 import { useRouter } from "next/router";
 import { PromoterProfile } from "../utils/Types/userTypes";
 

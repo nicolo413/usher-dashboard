@@ -1,5 +1,6 @@
 .container {
+  width: 500px;
   margin: 20px;
-  width: 300px;
-  overflow-x:visible;
+  flex: 1;
+  background-color: red;
 }

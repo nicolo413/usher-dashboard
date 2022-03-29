@@ -1,5 +1,6 @@
 .listContainer {
   overflow-x: scroll;
-  max-width: 100%;
+  max-width: 100vw;
   display: flex;
+  background-color: blue;
 }

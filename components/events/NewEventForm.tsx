@@ -66,6 +66,7 @@ function NewEventForm() {
               poster: result[1]!,
               venue_id: "095b1910-1c20-41e6-a7a3-88cb0bd1bc7a",
             };
+            console.log(newEvent, shows);
             await addNewEvent(newEvent, shows);
           })
           .catch(console.error);
@@ -189,7 +190,7 @@ function NewEventForm() {
               <Checkbox value="Comedy">Comedy</Checkbox>
             </Box>
             <Box w="33%">
-              <Checkbox value="Dama">Drama</Checkbox>
+              <Checkbox value="Drama">Drama</Checkbox>
             </Box>
             <Box w="33%">
               <Checkbox value="Musical">Musical</Checkbox>

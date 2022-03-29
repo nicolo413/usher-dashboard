@@ -16,7 +16,6 @@ const VenueCard = ({ venue }: Props) => {
   return (
     <div className={styles.container}>
       <Link href={`/${venue.id}`} passHref>
-
         <button>
           <div className={styles.card}>
             <div className={styles.image}>
