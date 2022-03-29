@@ -25,6 +25,7 @@ export const getPromoterProfile = async () => {
             city
             external_url
           }
+          stats
         } 
         error
         token
