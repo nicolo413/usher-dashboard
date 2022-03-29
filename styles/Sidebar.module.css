@@ -1,8 +1,9 @@
 .fullSidebar {
   min-height: 100%;
-  min-width: 20%;
+  min-width: 15%;
   margin-left: 0;
   float: left;
-  background-color: #161C29;
+  border-radius: 50px;
+  background-color: #161c29;
   z-index: 1000;
 }

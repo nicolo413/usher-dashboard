@@ -3,10 +3,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #161C29;
+  background-color: #fafafa;
   width: 100%;
   min-height: 15%;
-  z-index: 1000;
+  z-index: 999;
   padding: 0 20px;
 }
 
