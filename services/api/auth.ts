@@ -18,6 +18,7 @@ export const getPromoterProfile = async () => {
           email
           telephone
           venues {
+            id
             name
             address
             zipcode

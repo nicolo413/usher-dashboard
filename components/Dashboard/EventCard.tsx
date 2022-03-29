@@ -9,68 +9,46 @@ import {
   Badge,
 } from "native-base";
 import Image from 'next/image';
+import { EventType } from "../../utils/Types/dbTypes";
 
 
-const EventCard = ({ }) => {
+const EventCard = ({event}: {event: EventType}) => {
 
   return (
     <Box>
 
-    <Pressable
+<Pressable
       onPress={() => {}}
+    >
+      <HStack
+        mb={2}
+        style={{
+          alignSelf: "center",
+          width: "90%",
+          backgroundColor: "transparent",
+        }}
       >
-      <Box
-        alignSelf={'center'}
-        bgColor={"dark.50:alpha.40"}
-        shadow={2}
-        p={1}
-        mb={4}
-        rounded="lg"
-        w="90%"
-        >
+        {event.poster ?
         <Image
-          src={'/../public/images/adaptive-icon.png'}
-          alt="image base"
-          height="150px"
-          width="150px"
-          />
-        <HStack alignItems={"center"}>
-          <VStack flex={4} mt={-4} pl={3} pr={2} pb={2} roundedBottom="md">
-            <Badge
-              w={20}
-              bg="tertiary.700"
-              left={2}
-              top={-2}
-              position="absolute"
-              >
-              <Text color="white" fontSize="xs" fontWeight={"medium"}>
-                Theater
-              </Text>
-            </Badge>
-            <Text color="white" fontWeight="medium" fontSize="md">
-              Now
-            </Text>
-            {"Teatre misco" ?
-            <Text color="light.200" fontWeight="medium" fontSize="sm">
-              Or not now
-            </Text> : null
-            }
-            { "Here comes the shows" ?
-            <Box>
-              {"event.today_shows.length" ? (
-                <Text color="white">Today at</Text>
-                ) : null}
-            </Box> : null
-            }
-          </VStack>
-          <Text flex={1} color="white" fontWeight="medium" fontSize="lg">
-            {"event.price"}€
+        src={event.poster}
+        alt={`${event.name} poster`}
+        layout="fill"
+        />
+        : null
+        }
+        <VStack paddingLeft={4} paddingTop={1}>
+          <Text fontSize="md" fontWeight="medium" color="white">
+            {event.name}
           </Text>
-        </HStack>
-      </Box>
+          <Text fontSize="sm" fontWeight="medium" color="light.200">
+            {event.description}
+          </Text>
+          <Text fontSize="sm" fontWeight="medium" color="white" underline>
+            {`Tickets from ${event.price}€`}
+          </Text>
+        </VStack>
+      </HStack>
     </Pressable>
-    <Box position="absolute" right="40px" top="15px">
-    </Box>
     </Box>
   );
 };

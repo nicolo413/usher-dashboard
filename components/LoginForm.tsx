@@ -2,7 +2,7 @@ import * as React from "react";
 import { Button, Stack, Input, FormControl, VStack } from "native-base";
 import { login, LoginForm, loginMock } from "../utils/helpers/login";
 import { useState, useContext } from "react";
-import { PromoterContext } from "../services/contexts/UserContext";
+import { PromoterContext, usePromoterContext } from "../services/contexts/UserContext";
 import { useRouter } from "next/router";
 import { PromoterProfile } from "../utils/Types/userTypes";
 
@@ -15,11 +15,11 @@ const LogInForm = ({ setUser, setIsNewUser }: Props) => {
   const router = useRouter();
   const [formData, setFormData] = useState<LoginForm>(loginMock);
   //@ts-ignore
-  const { promoter, setPromoter } = useContext(PromoterContext);  
+  const { promoter, populatePromoter } = usePromoterContext();  
 
   const submitHandler = async () => {
-    login(formData).then(promoter => {
-      setPromoter(promoter)
+    login(formData).then((_promoter)  => {
+      populatePromoter(_promoter as PromoterProfile)
       router.push('/dashboard')
     });
 

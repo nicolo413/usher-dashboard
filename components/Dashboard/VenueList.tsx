@@ -1,6 +1,5 @@
-import { HStack } from 'native-base';
 import * as React from 'react';
-import { useEffect } from "react"
+import styles from '../../styles/VenueList.module.css'
 import { Venue } from '../../utils/Types/dbTypes';
 import VenueCard from "./VenueCard"
 
@@ -9,15 +8,16 @@ type Props = {
 }
 
 const VenueList = ({venues} : Props) => {
+  console.log(venues);
   return (
-    <HStack maxWidth={"100%"} flexWrap="wrap">
+    <div className={styles.listContainer}>
       { venues.length ? (
         venues.map(venue => {
           console.log(venue);
           return <VenueCard key={venue.id} venue={venue}/>
         })) : null
       } 
-    </HStack>
+    </div>
   )
 }
 

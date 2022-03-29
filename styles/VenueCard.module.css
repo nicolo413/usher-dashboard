@@ -1,7 +1,5 @@
-.cardImage {
-  display: inherit;
-} 
-
-.cardInfo {
-  display: inherit;
+.container {
+  margin: 20px;
+  width: 300px;
+  overflow-x:visible;
 }

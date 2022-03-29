@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignupForm";
 import { useEffect, useState } from "react";
+import { PromoterProfile } from "../utils/Types/userTypes";
 
 type Props = {
   setUser: (user: PromoterProfile | null) => void;
