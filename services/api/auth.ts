@@ -17,6 +17,30 @@ export const getPromoterProfile = async () => {
           name
           email
           telephone
+          stats {
+            day {
+              total {
+                sold_tickets
+                seats
+              }
+            }
+            week {
+              total {
+                sales
+              }
+            }
+            month {
+              total {
+                seats
+              }
+            }
+            year {
+              total {
+                seats
+    
+              }
+            }
+          }
           venues {
             id
             name
@@ -24,7 +48,21 @@ export const getPromoterProfile = async () => {
             zipcode
             city
             external_url
+            events {
+              id
+              name
+              price
+              type
+              genres
+              image
+              poster
+              language
+              duration
+              description
+
+            }
           }
+        
         } 
         error
         token
@@ -54,7 +92,25 @@ export const getJWT = async (
           email
           telephone
           venues {
+            id
             name
+            address
+            zipcode
+            city
+            external_url
+            events {
+              id
+              name
+              price
+              type
+              genres
+              image
+              poster
+              language
+              duration
+              description
+              
+            }
           }
         }
         error
@@ -74,7 +130,6 @@ export const getJWT = async (
 };
 
 export const createPromoter = async (email: string, password: string, name: string, telephone: number) => {
-  console.log('lets create it', email, password, name, telephone)
   const mutation = gql`
     mutation createPromoter($email: String! $password: String! $name: String! $telephone: Int!) {
       createPromoter(email: $email password: $password name: $name telephone: $telephone) {
@@ -97,7 +152,6 @@ export const createPromoter = async (email: string, password: string, name: stri
     const { createPromoter } = await client.request(mutation, { email, password, name, telephone });
     if (createPromoter.error) return createPromoter.error as string
     localStorage.setItem('promoter', createPromoter.token);
-    console.log(createPromoter);
     return createPromoter.promoter as PromoterProfile;
   } catch (e) {
     return 'Network error while creating a new user';

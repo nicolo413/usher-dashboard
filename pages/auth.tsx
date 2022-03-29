@@ -1,10 +1,9 @@
 import React from "react";
-import { Flex, View, Text, Button, Center } from "native-base";
+import { View, Center } from "native-base";
 import Image from "next/image";
-import { useRouter } from 'next/router';
 import LoginForm from "../components/LoginForm";
 import SignUpForm from "../components/SignupForm";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PromoterProfile } from "../utils/Types/userTypes";
 
 type Props = {
@@ -13,42 +12,29 @@ type Props = {
 
 const Auth = ({ setUser }: Props) => {
   const [isNewUser, setIsNewUser] = useState(false);
-  const router = useRouter()
-  useEffect(() => {
-    const token = localStorage.getItem('promoter');
-    
-    // if (token) router.push('/index')
-  }, []);
-
   return (
+    <div>
       <div>
-        <div >
-          {/* <Text>Hero area</Text> */}
-          <Image src="/images/hero.jpg" alt="hero image" layout="fill"/>
-        </div>
-        
-        <Center>
-          <View>
-            <Image
-              src="/images/adaptive-icon.png"
-              alt="Usher icon"
-              width="300px"
-              height="300px"
-              />
-          <View>
-
-          {isNewUser ? (
-            <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser} />
-            // <Text>Sign UP</Text>
-            ) : (
-              // <Text>Log IN</Text>
-              <LoginForm setUser={setUser} setIsNewUser={setIsNewUser} />
-              )}
-          </View>
-          
-          </View>
-        </Center>
+        <Image src="/images/hero.jpg" alt="hero image" layout="fill" />
       </div>
+      <Center>
+        <View>
+          <Image
+            src="/images/adaptive-icon.png"
+            alt="Usher icon"
+            width="300px"
+            height="300px"
+          />
+          <View>
+            {isNewUser ? (
+              <SignUpForm setUser={setUser} setIsNewUser={setIsNewUser} />
+            ) : (
+              <LoginForm setUser={setUser} setIsNewUser={setIsNewUser} />
+            )}
+          </View>
+        </View>
+      </Center>
+    </div>
   );
 };
 
