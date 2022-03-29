@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -12,30 +12,20 @@ import {
   Select,
   TextArea,
   VStack,
-} from 'native-base';
-import moment from 'moment';
+} from "native-base";
+import moment from "moment";
 
-import NewShowForm from './showForm';
-import { showType } from '../../utils/types/formTypes';
-
-type eventDataType = {
-  name: string | undefined;
-  price: number | undefined;
-  type: string | undefined;
-  language: string | undefined;
-  duration: number | undefined;
-  description: string | undefined;
-  genres: string[] | undefined;
-  external_url: string | undefined;
-};
+import NewShowForm from "./showForm";
+import ImagesInput from "./ImagesInput";
+import { uploadImage } from "../../utils/helpers/images";
 
 const defaultState = {
   name: undefined,
   price: undefined,
   type: undefined,
   genres: undefined,
-  //image: undefined,
-  //poster: undefined,
+  image: undefined,
+  poster: undefined,
   language: undefined,
   duration: undefined,
   description: undefined,
@@ -51,32 +41,36 @@ function showIsValid(show: showType) {
 }
 
 function NewEventForm() {
-  const [formData, setFormData] = useState<eventDataType>({
-    name: undefined,
-    price: undefined,
-    type: undefined,
-    genres: undefined,
-    //image: undefined,
-    //poster: undefined,
-    language: undefined,
-    duration: undefined,
-    description: undefined,
-    external_url: undefined,
-  });
+  const [formData, setFormData] = useState<eventDataType>(defaultState);
 
   const defaultShow = {
-    date: moment(Date.now()).format('yyyy-MM-DDThh:mm'),
+    date: moment(Date.now()).format("yyyy-MM-DDThh:mm"),
     active_sale: false,
     available_seats: 0,
   };
 
   const [shows, setShows] = useState<showType[]>([defaultShow]);
-  // const [show, setShow] = useState(defaultShow);
 
   const handleSubmit = () => {
     if (isValid()) {
-      console.log(formData, shows);
-    } else console.log('Invalid data');
+      // Transform images to url
+      if (formData.image && formData.poster) {
+        const imageURL = uploadImage(formData.image, "usher-image");
+        const posterURL = uploadImage(formData.poster, "usher-poster");
+        Promise.all([imageURL, posterURL])
+          .then((result) => {
+            const newEvent = {
+              ...formData,
+              image: result[0],
+              poster: result[1],
+              venue_id: "",
+            };
+          })
+          .catch(console.error);
+      }
+
+      // Receive the new created event
+    } else console.log("Invalid data");
   };
 
   const isValid = () => {
@@ -86,7 +80,7 @@ function NewEventForm() {
 
   return (
     <Center w="full" h="full">
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Name</FormControl.Label>
         <Input
           isFullWidth
@@ -101,7 +95,7 @@ function NewEventForm() {
           }}
         />
       </FormControl>
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Event type</FormControl.Label>
         <Select
           placeholder="Select type of event"
@@ -115,13 +109,13 @@ function NewEventForm() {
           <Select.Item label="Circus" value="CIRCUS" />
         </Select>
       </FormControl>
-      <FormControl isRequired w={'75%'} mb="2">
-        <HStack justifyContent={'space-between'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
+        <HStack justifyContent={"space-between"} mb="2">
           <VStack w="25%">
             <FormControl.Label>Price</FormControl.Label>
             <InputGroup>
               <Input
-                textAlign={'right'}
+                textAlign={"right"}
                 onChangeText={(price: string) => {
                   setFormData((currentData) => ({
                     ...currentData,
@@ -138,7 +132,7 @@ function NewEventForm() {
 
             <InputGroup>
               <Input
-                textAlign={'right'}
+                textAlign={"right"}
                 onChangeText={(duration: string) => {
                   setFormData((currentData) => ({
                     ...currentData,
@@ -167,7 +161,7 @@ function NewEventForm() {
         </HStack>
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Description</FormControl.Label>
 
         <TextArea
@@ -180,7 +174,7 @@ function NewEventForm() {
         />
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>Genre (pick all which apply)</FormControl.Label>
         <Checkbox.Group
           onChange={(genres) => {
@@ -202,7 +196,7 @@ function NewEventForm() {
         </Checkbox.Group>
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2">
+      <FormControl isRequired w={"75%"} mb="2">
         <FormControl.Label>External URL</FormControl.Label>
         <Input
           isFullWidth
@@ -216,7 +210,9 @@ function NewEventForm() {
         />
       </FormControl>
 
-      <FormControl isRequired w={'75%'} mb="2" mt="4">
+      <ImagesInput setFormData={setFormData}></ImagesInput>
+
+      <FormControl isRequired w={"75%"} mb="2" mt="4">
         <HStack alignItems="center" justifyContent="space-between">
           <FormControl.Label mr="6">Dates</FormControl.Label>
           <Button
@@ -225,7 +221,7 @@ function NewEventForm() {
               setShows([...shows, defaultShow]);
               // }
             }}
-            size={'md'}
+            size={"md"}
           >
             Add another date ➕
           </Button>
@@ -244,7 +240,7 @@ function NewEventForm() {
       </FormControl>
 
       <Button
-        size={'md'}
+        size={"md"}
         onPress={handleSubmit}
         // isLoading
         spinnerPlacement="end"
@@ -257,3 +253,6 @@ function NewEventForm() {
 }
 
 export default NewEventForm;
+function loadImage() {
+  throw new Error("Function not implemented.");
+}

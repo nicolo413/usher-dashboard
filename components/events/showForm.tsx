@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import moment from 'moment';
+import React, { useState } from "react";
+import moment from "moment";
 import {
   Box,
   Center,
@@ -10,14 +10,8 @@ import {
   InputGroup,
   InputRightAddon,
   Switch,
-} from 'native-base';
-import { right } from '@cloudinary/url-gen/qualifiers/textAlignment';
-
-type showType = {
-  date: string;
-  active_sale: boolean;
-  available_seats: number;
-};
+} from "native-base";
+import { right } from "@cloudinary/url-gen/qualifiers/textAlignment";
 
 type showFormProps = {
   shows: showType[];
@@ -29,9 +23,9 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
   return (
     <HStack
       style={{
-        width: '100%',
+        width: "100%",
         marginVertical: 15,
-        justifyContent: 'space-between',
+        justifyContent: "space-between",
       }}
     >
       <Box>
@@ -49,8 +43,8 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
           }}
           style={{
             height: 40,
-            fontFamily: 'Roboto, sans-serif',
-            textAlign: 'center',
+            fontFamily: "Roboto, sans-serif",
+            textAlign: "center",
           }}
         />
       </Box>
@@ -59,8 +53,8 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
         <FormControl.Label>Available seats</FormControl.Label>
         <InputGroup>
           <input
-            type={'number'}
-            style={{ textAlign: 'right', height: 40, width: '90%' }}
+            type={"number"}
+            style={{ textAlign: "right", height: 40, width: "90%" }}
             value={String(shows[index].available_seats)}
             onChange={(seats) => {
               const updatedShow = {
