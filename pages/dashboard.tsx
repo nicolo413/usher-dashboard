@@ -2,9 +2,19 @@ import * as React from "react";
 import VenueList from "../components/Dashboard/VenueList";
 import styles from "../styles/Dashboard.module.css";
 import { usePromoterContext } from "../services/contexts/UserContext";
+import { useEffect } from "react";
+import { getPromoterProfile } from "../services/api/auth";
 
 const Dashboard = () => {
   const { promoter, populatePromoter } = usePromoterContext();
+
+  useEffect(() => {
+    getPromoterProfile()
+      .then((prom) => {
+        populatePromoter(prom);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   if (!promoter) return null;
   return (

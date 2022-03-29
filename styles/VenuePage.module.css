@@ -1,9 +1,19 @@
+.mainContainer {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  min-width: 90vw;
+}
+
 .container {
-  margin-top: 20px;
   display: flex;
 }
 
 .eventList {
   display: flex;
   flex-direction: column;
+  flex: 2;
+}
+
+.formContainer {
+  flex: 3;
 }

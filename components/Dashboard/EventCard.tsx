@@ -1,55 +1,35 @@
 import * as React from "react";
-import styles from '../../styles/EventCard.module.css';
-import Image from 'next/image';
+import { Image } from "native-base";
+import styles from "../../styles/EventCard.module.css";
 import { EventType } from "../../utils/Types/dbTypes";
+import { capitalize } from "../../utils/helpers/cards";
 
-
-const EventCard = ({event}: {event?: EventType}) => {
+const EventCard = ({ event }: { event?: EventType }) => {
   if (event) {
-
     return (
       <button className={styles.mainButton}>
-      <div className={styles.card}>
-        {event.poster ?
-        <Image
-        className={styles.image}
-        src={event.poster}
-        alt={`${event.name} poster`}
-        width="100px"
-        height="130px"
-        />
-        : null
-        }
-        <div className={styles.content}>
-          <h3>
-            {event.name}
-          </h3>
-          <h6 className={styles.description}>
-            {event.description}
-          </h6>
-          <h6 className={styles.price}>
-            {`${event.price}€`}
-          </h6>
+        <div className={styles.card}>
+          {event.poster ? (
+            <div className={styles.image}>
+              <Image
+                src={event.poster}
+                alt={`${event.name} poster`}
+                size={"50px"}
+                borderRadius={100}
+              />
+            </div>
+          ) : null}
+          <div className={styles.content}>
+            <h3 className={styles.title}>{capitalize(event.name)}</h3>
+          </div>
         </div>
-      </div>
-    </button>
-  );
+      </button>
+    );
   }
-  return (
-    <button className={styles.mainButton}>
-      <div className={styles.card}>
-        <Image className={styles.icon} src={'/images/add-icon.png'} alt="+ icon" width="100px" height="130px"/>
-        <div className={styles.content}>
-          <h3>
-            Add a new Event
-          </h3>
-        </div>
-      </div>
-    </button>
-  )
+  return null;
 };
 
-export default EventCard
+export default EventCard;
 // export default React.memo(
 //   EventCard,
 //   (prev, next) => prev.event.id === next.event.id
