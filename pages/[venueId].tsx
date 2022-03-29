@@ -18,6 +18,7 @@ const EventsPage = () => {
     return (
       <div className={styles.container}>
         <div className={styles.eventList}>
+          <EventCard key={0} />
         { (venue.events && venue.events.length) ? 
           (
             venue.events.map(event => {

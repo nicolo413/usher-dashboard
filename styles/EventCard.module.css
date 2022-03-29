@@ -1,0 +1,37 @@
+
+.mainButton {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 8px;
+}
+
+.card {
+  border-radius: 8px;
+  background-color: rgba(22, 28, 41, 0.8);
+  display: flex;
+}
+
+.image {
+  flex: 1;
+  border-radius: 8px 0 0 8px;
+  padding: 20px;
+}
+
+.content {
+  color: #FAFAFA;
+  padding-left: 10px;
+  text-align: left;
+  flex: 2;
+}
+
+.price {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.description {
+  padding-right: 5px;
+}

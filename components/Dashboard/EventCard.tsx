@@ -1,56 +1,52 @@
 import * as React from "react";
-
-import {
-  Pressable,
-  VStack,
-  Box,
-  Text,
-  HStack,
-  Badge,
-} from "native-base";
+import styles from '../../styles/EventCard.module.css';
 import Image from 'next/image';
 import { EventType } from "../../utils/Types/dbTypes";
 
 
-const EventCard = ({event}: {event: EventType}) => {
+const EventCard = ({event}: {event?: EventType}) => {
+  if (event) {
 
-  return (
-    <Box>
-
-<Pressable
-      onPress={() => {}}
-    >
-      <HStack
-        mb={2}
-        style={{
-          alignSelf: "center",
-          width: "90%",
-          backgroundColor: "transparent",
-        }}
-      >
+    return (
+      <button className={styles.mainButton}>
+      <div className={styles.card}>
         {event.poster ?
         <Image
+        className={styles.image}
         src={event.poster}
         alt={`${event.name} poster`}
-        layout="fill"
+        width="100px"
+        height="130px"
         />
         : null
         }
-        <VStack paddingLeft={4} paddingTop={1}>
-          <Text fontSize="md" fontWeight="medium" color="white">
+        <div className={styles.content}>
+          <h3>
             {event.name}
-          </Text>
-          <Text fontSize="sm" fontWeight="medium" color="light.200">
+          </h3>
+          <h6 className={styles.description}>
             {event.description}
-          </Text>
-          <Text fontSize="sm" fontWeight="medium" color="white" underline>
-            {`Tickets from ${event.price}€`}
-          </Text>
-        </VStack>
-      </HStack>
-    </Pressable>
-    </Box>
+          </h6>
+          <h6 className={styles.price}>
+            {`${event.price}€`}
+          </h6>
+        </div>
+      </div>
+    </button>
   );
+  }
+  return (
+    <button className={styles.mainButton}>
+      <div className={styles.card}>
+        <Image className={styles.icon} src={'/images/add-icon.png'} alt="+ icon" width="100px" height="130px"/>
+        <div className={styles.content}>
+          <h3>
+            Add a new Event
+          </h3>
+        </div>
+      </div>
+    </button>
+  )
 };
 
 export default EventCard
