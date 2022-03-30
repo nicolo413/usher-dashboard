@@ -19,7 +19,7 @@ const EventsPage = () => {
         <h2>Events at {venue.name}:</h2>
         <div className={styles.container}>
           <div className={styles.eventList}>
-            <EventCard key={0} />
+            <EventCard key={'addNew'} />
             {venue.events && venue.events.length
               ? venue.events.map((event) => {
                   return <EventCard key={event.id} event={event} />;

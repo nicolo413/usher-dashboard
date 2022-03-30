@@ -5,6 +5,7 @@
   border: none;
   background-color: #1a2232;
   border-radius: 8px;
+  transition: all ease-in-out 0.1s;
 }
 
 .mainButton:hover {

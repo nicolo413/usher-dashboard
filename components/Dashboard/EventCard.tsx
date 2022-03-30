@@ -26,7 +26,12 @@ const EventCard = ({ event }: { event?: EventType }) => {
       </button>
     );
   }
-  return null;
+  return (
+    <button className={styles.mainButton}>
+      <div className={styles.card}>
+      </div>
+    </button>
+  );
 };
 
 export default EventCard;
