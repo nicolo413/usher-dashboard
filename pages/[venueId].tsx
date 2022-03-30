@@ -27,7 +27,7 @@ const EventsPage = () => {
               : null}
           </div>
           <div className={styles.formContainer}>
-            <NewEventForm />
+            {venueId ? <NewEventForm venueId={venueId as string} /> : null}
           </div>
         </div>
       </div>

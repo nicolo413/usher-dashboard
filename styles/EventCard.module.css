@@ -17,6 +17,7 @@
 }
 
 .card {
+  cursor: pointer;
   border-radius: 20px;
   background-color: #1a2232;
   display: flex;

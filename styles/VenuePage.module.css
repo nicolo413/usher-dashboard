@@ -2,10 +2,12 @@
   margin-top: 2rem;
   margin-left: 2rem;
   min-width: 90vw;
+  max-height: 90vh;
 }
 
 .container {
   display: flex;
+  max-height: calc(90vh - 3rem);
 }
 
 .eventList {

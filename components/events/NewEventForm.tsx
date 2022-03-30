@@ -12,6 +12,8 @@ import {
   Select,
   TextArea,
   VStack,
+  Text,
+  Flex,
 } from "native-base";
 import moment from "moment";
 
@@ -41,7 +43,7 @@ function showIsValid(show: showType) {
   );
 }
 
-function NewEventForm() {
+function NewEventForm({ venueId }: { venueId: string }) {
   const [formData, setFormData] = useState<eventDataType>(defaultState);
 
   const defaultShow = {
@@ -60,18 +62,18 @@ function NewEventForm() {
         const posterURL = uploadImage(formData.poster, "usher-poster");
         Promise.all([imageURL, posterURL])
           .then(async (result) => {
+            //@ts-ignore
             const newEvent: EventInput = {
               ...formData,
               image: result[0]!,
               poster: result[1]!,
-              venue_id: "095b1910-1c20-41e6-a7a3-88cb0bd1bc7a",
+              venue_id: venueId,
             };
             console.log(newEvent, shows);
             await addNewEvent(newEvent, shows);
           })
           .catch(console.error);
       }
-
       // Receive the new created event
     } else console.log("Invalid data");
   };
@@ -82,12 +84,13 @@ function NewEventForm() {
   };
 
   return (
-    <Center w="full" h="full">
-      <FormControl isRequired w={"75%"} mb="2">
+    <Flex w="full" h="100%" pb={36} overflow={"scroll"} alignItems={"center"}>
+      <FormControl isRequired w={"75%"} mb="5">
         <FormControl.Label>Name</FormControl.Label>
         <Input
           isFullWidth
           size="md"
+          _focus={{ borderColor: "light.100" }}
           type="text"
           placeholder="Name"
           autoCapitalize="words"
@@ -98,10 +101,12 @@ function NewEventForm() {
           }}
         />
       </FormControl>
-      <FormControl isRequired w={"75%"} mb="2">
+      <FormControl isRequired w={"75%"} mb="5">
         <FormControl.Label>Event type</FormControl.Label>
         <Select
           placeholder="Select type of event"
+          size="md"
+          _focus={{ borderColor: "light.100" }}
           onValueChange={(type) => {
             setFormData((currentData) => ({ ...currentData, type }));
           }}
@@ -112,7 +117,7 @@ function NewEventForm() {
           <Select.Item label="Circus" value="CIRCUS" />
         </Select>
       </FormControl>
-      <FormControl isRequired w={"75%"} mb="2">
+      <FormControl isRequired w={"75%"} mb="5">
         <HStack justifyContent={"space-between"} mb="2">
           <VStack w="25%">
             <FormControl.Label>Price</FormControl.Label>
@@ -125,6 +130,8 @@ function NewEventForm() {
                     price: +price,
                   }));
                 }}
+                size="md"
+                _focus={{ borderColor: "light.100" }}
               />
               <InputRightAddon>€</InputRightAddon>
             </InputGroup>
@@ -135,6 +142,8 @@ function NewEventForm() {
 
             <InputGroup>
               <Input
+                size="md"
+                _focus={{ borderColor: "light.100" }}
                 textAlign={"right"}
                 onChangeText={(duration: string) => {
                   setFormData((currentData) => ({
@@ -151,6 +160,7 @@ function NewEventForm() {
             <FormControl.Label>Language</FormControl.Label>
             <Select
               size="md"
+              _focus={{ borderColor: "light.100" }}
               placeholder="Select spoken language"
               onValueChange={(language) => {
                 setFormData((currentData) => ({ ...currentData, language }));
@@ -159,16 +169,19 @@ function NewEventForm() {
               <Select.Item label="Catalan" value="Catalan" />
               <Select.Item label="Spanish" value="Spanish" />
               <Select.Item label="English" value="English" />
+              <Select.Item label="Typescript" value="English" />
             </Select>
           </VStack>
         </HStack>
       </FormControl>
 
-      <FormControl isRequired w={"75%"} mb="2">
+      <FormControl isRequired w={"75%"} mb="5">
         <FormControl.Label>Description</FormControl.Label>
 
         <TextArea
           h={20}
+          size="md"
+          _focus={{ borderColor: "light.100" }}
           placeholder="Event description"
           onChangeText={(description) => {
             setFormData((currentData) => ({ ...currentData, description }));
@@ -177,7 +190,7 @@ function NewEventForm() {
         />
       </FormControl>
 
-      <FormControl isRequired w={"75%"} mb="2">
+      <FormControl isRequired w={"75%"} mb="5">
         <FormControl.Label>Genre (pick all which apply)</FormControl.Label>
         <Checkbox.Group
           onChange={(genres) => {
@@ -199,11 +212,12 @@ function NewEventForm() {
         </Checkbox.Group>
       </FormControl>
 
-      <FormControl isRequired w={"75%"} mb="2">
+      <FormControl isRequired w={"75%"} mb="5">
         <FormControl.Label>External URL</FormControl.Label>
         <Input
           isFullWidth
           size="md"
+          _focus={{ borderColor: "light.100" }}
           type="text"
           placeholder="Enter your event's site"
           value={formData.external_url}
@@ -215,7 +229,7 @@ function NewEventForm() {
 
       <ImagesInput setFormData={setFormData}></ImagesInput>
 
-      <FormControl isRequired w={"75%"} mb="2" mt="4">
+      <FormControl isRequired w={"75%"} mb="10" mt="10">
         <HStack alignItems="center" justifyContent="space-between">
           <FormControl.Label mr="6">Dates</FormControl.Label>
           <Button
@@ -224,7 +238,8 @@ function NewEventForm() {
               setShows([...shows, defaultShow]);
               // }
             }}
-            size={"md"}
+            size="md"
+            _focus={{ borderColor: "light.100" }}
           >
             Add another date ➕
           </Button>
@@ -243,7 +258,8 @@ function NewEventForm() {
       </FormControl>
 
       <Button
-        size={"md"}
+        size="md"
+        _focus={{ borderColor: "light.100" }}
         onPress={handleSubmit}
         // isLoading
         spinnerPlacement="end"
@@ -251,7 +267,7 @@ function NewEventForm() {
       >
         Submit
       </Button>
-    </Center>
+    </Flex>
   );
 }
 

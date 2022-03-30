@@ -1,7 +1,16 @@
-import { extendTheme } from "native-base";
+import { extendTheme, themeTools } from "native-base";
 
 
 const theme = extendTheme({
+  components: {
+    Text: {
+      baseStyle: (props: any) => {
+        return {
+          color: themeTools.mode('light.200', 'light.200')(props),
+        }
+      },
+    },
+  },
   colors: {
     primary: {
       50: '#ffe6e5',
@@ -65,13 +74,14 @@ const theme = extendTheme({
       50: '#070c15',
     }
   },
-  config: {
-    useSystemColorMode: false,
-  },
   fonts: {
     heading: 'Jost',
     body: 'Jost',
     mono: 'Jost',
+  },
+  config: {
+    useSystemColorMode: false,
+    initialColorMode: 'dark',
   },
 });
 
