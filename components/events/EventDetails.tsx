@@ -1,10 +1,13 @@
 import { Center, Heading, View } from "native-base";
-import React from "react";
+import React, { useEffect } from "react";
 import { EventType } from "../../utils/Types/dbTypes";
 import ShowDetails from "./ShowDetails";
 import ShowHeadings from "./ShowHeadings";
 
 function EventDetails({ event }: { event: EventType }) {
+  //const [shows, setShows] = useState(event.shows);
+  useEffect(() => {}, [event]);
+
   if (!event) return null;
   return (
     <Center>
