@@ -4,10 +4,12 @@ import styles from "../../styles/EventCard.module.css";
 import { EventType } from "../../utils/Types/dbTypes";
 import { capitalize } from "../../utils/helpers/cards";
 
-const EventCard = ({ event }: { event?: EventType }) => {
+const EventCard = ({ event, setSelectedEvent }: { event?: EventType, setSelectedEvent: React.Dispatch<React.SetStateAction<EventType | null>> }) => {
   if (event) {
     return (
-      <button className={styles.mainButton}>
+      <button className={styles.mainButton}
+        onClick={() => setSelectedEvent(event)}
+      >
         <div className={styles.card}>
           {event.poster ? (
             <div className={styles.image}>
@@ -27,7 +29,9 @@ const EventCard = ({ event }: { event?: EventType }) => {
     );
   }
   return (
-    <button className={styles.mainButton} style={{backgroundColor: '#2d3952'}}>
+    <button className={styles.mainButton} style={{backgroundColor: '#2d3952'}}
+      onClick={() => {setSelectedEvent(null)}}
+    >
       <div className={styles.addCard}>
         <div className={styles.image}>
           <Image
