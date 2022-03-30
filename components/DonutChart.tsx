@@ -5,11 +5,12 @@ import { Text } from 'native-base';
 
 const DonutChart = ({ weeklyData }: any) => {
   const data = parseDonut(weeklyData);
-  const COLORS = ['#0088FEc5', '#00C49Fc5', '#8884d8'];
+  const COLORS = ['#0088FEa5', '#00C49Fbf', '#8884bf'];
 
   return (
     <div
       style={{
+        height: '100%',
         marginLeft: 40,
         display: 'flex',
         flexDirection: 'column',
@@ -23,8 +24,13 @@ const DonutChart = ({ weeklyData }: any) => {
           nameKey="name"
           cx="50%"
           cy="50%"
-          outerRadius={150}
-          fill="#8884d800"
+          outerRadius={130}
+          innerRadius={90}
+          fill="#00000000"
+          stroke="#000000"
+          strokeWidth={'3'}
+          paddingAngle={1}
+          // stroke
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -35,7 +41,7 @@ const DonutChart = ({ weeklyData }: any) => {
           formatter={(value: string) => `${value}€`}
         />
       </PieChart>
-      <Text fontSize={'lg'} mt="4" color="white">
+      <Text fontSize={'lg'} mt="2" color="white">
         Weekly revenue per event
       </Text>
     </div>

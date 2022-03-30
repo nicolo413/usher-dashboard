@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { getPromoterProfile } from '../services/api/auth';
 import BarChart from '../components/BarChart';
 import DonutChart from '../components/DonutChart';
-import { Center, HStack, Text, VStack } from 'native-base';
+import { Box, Center, HStack, Text, VStack } from 'native-base';
 import DataCard from '../components/Dashboard/DataCard';
 
 const Dashboard = () => {
@@ -32,10 +32,16 @@ const Dashboard = () => {
 
       <div className={styles.statsContainer}>
         <h2 className={styles.statsTitle}>Your Stats:</h2>
-        <HStack alignItems="center">
-          <DataCard promoter={promoter} />
-          <BarChart weeklyData={promoter.stats.week.by_event} />
-          <DonutChart weeklyData={promoter.stats.week.by_event} />
+        <HStack>
+          <Box>
+            <DataCard promoter={promoter} />
+          </Box>
+          <Box pt={9}>
+            <BarChart weeklyData={promoter.stats.week.by_event} />
+          </Box>
+          <Box>
+            <DonutChart weeklyData={promoter.stats.week.by_event} />
+          </Box>
         </HStack>
       </div>
     </div>
