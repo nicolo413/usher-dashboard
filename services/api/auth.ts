@@ -37,7 +37,6 @@ export const getPromoterProfile = async () => {
             year {
               total {
                 seats
-    
               }
             }
           }
@@ -59,10 +58,12 @@ export const getPromoterProfile = async () => {
               language
               duration
               description
-
+              shows {
+                active_sale
+                date
+              }
             }
           }
-<<<<<<< HEAD
           stats {
             week {
               total {
@@ -81,10 +82,6 @@ export const getPromoterProfile = async () => {
             }
           }
         }
-=======
-        
-        } 
->>>>>>> development
         error
         token
       }
@@ -130,7 +127,6 @@ export const getJWT = async (
               language
               duration
               description
-              
             }
           }
           stats {
@@ -167,17 +163,12 @@ export const getJWT = async (
   }
 };
 
-<<<<<<< HEAD
 export const createPromoter = async (
   email: string,
   password: string,
   name: string,
   telephone: number
 ) => {
-  console.log('lets create it', email, password, name, telephone);
-=======
-export const createPromoter = async (email: string, password: string, name: string, telephone: number) => {
->>>>>>> development
   const mutation = gql`
     mutation createPromoter(
       $email: String!
