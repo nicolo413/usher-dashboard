@@ -131,6 +131,7 @@ export const getJWT = async (
 
   try {
     const { getPromoter } = await client.request(query, { email, password });
+    console.log(getPromoter)
     if (getPromoter.error) return getPromoter.error;
     localStorage.setItem('promoter', getPromoter.token);
     return getPromoter.promoter;
