@@ -25,7 +25,7 @@ const Sidebar = () => {
         flexDirection={"column"}
         h={"100%"}
         py={16}
-        ml={8}
+        ml={"30%"}
       >
         <Link href={routes[0]} passHref>
           <IoHomeOutline

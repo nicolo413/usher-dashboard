@@ -3,7 +3,7 @@ export type EventType = {
   name: string,
   price: number,
   type: string,
-  genres: String[],
+  genres: string[],
   image?: string,
   poster?: string,
   language?: string,
@@ -20,9 +20,9 @@ export type Venue = {
   id: string,
   name: string,
   external_url?: string,
-  address: String,
-  zipcode: String,
-  city: String,
+  address: string,
+  zipcode: string,
+  city: string,
   latitude: number,
   longitude: number,
   events: EventType[],
@@ -40,9 +40,9 @@ export type Ticket = {
 
 export type Promoter = {
   id: number,
-  name: String,
-  email: String,
-  password: String,
+  name: string,
+  email: string,
+  password: string,
   venues: Venue[],
   telephone?: number
 }
