@@ -79,14 +79,15 @@ function showIsValid(show: showType) {
             console.log(newEvent, shows);
             return addNewEvent(newEvent, shows);
           }).then((addedEvent) => {
+            console.log(addedEvent.language);
             setCurrentVenue((venue) => {
               if (venue) {
                 const newEvents: EventType[] = [...venue.events, addedEvent]
                 return {...venue, events: newEvents}
               } else return null
             })
+            setSelectedEvent(addedEvent)
             setFormData(defaultState);
-            setSelectedEvent(addedEvent.event.id)
           }
           )
           .catch(console.error);
