@@ -1,18 +1,25 @@
 import EventCard from "../components/Dashboard/EventCard";
-import { EventType } from "../utils/Types/dbTypes";
+import { Venue } from "../utils/Types/dbTypes";
 import * as React from "react";
-import { PromoterContext } from "../services/contexts/UserContext";
-import { useContext, useEffect } from "react";
-import { useRouter } from "next/router";
 import styles from "../styles/VenuePage.module.css";
 import NewEventForm from "../components/events/NewEventForm";
+import { getVenueInfo } from "../services/api/venues";
+import { GetServerSideProps } from "next";
 
-const EventsPage = () => {
-  const router = useRouter();
-  const { promoter, populatePromoter } = useContext(PromoterContext);
-  const { venueId } = router.query;
-  const venue = promoter?.venues.find((venue) => venue.id === venueId);
-  console.log(venue?.events);
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const venueId = query.venueId;
+  if (venueId) {
+    const venue = await getVenueInfo(venueId as string);
+    return {
+      props: { venue },
+    };
+  }
+  return {
+    props: { venue: null },
+  };
+};
+
+const EventsPage = ({ venue }: { venue: Venue | null }) => {
   if (venue) {
     return (
       <div className={styles.mainContainer}>
@@ -27,7 +34,7 @@ const EventsPage = () => {
               : null}
           </div>
           <div className={styles.formContainer}>
-            {venueId ? <NewEventForm venueId={venueId as string} /> : null}
+            {venue ? <NewEventForm venueId={venue.id as string} /> : null}
           </div>
         </div>
       </div>

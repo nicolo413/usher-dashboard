@@ -45,22 +45,7 @@ export const getPromoterProfile = async () => {
             id
             name
             address
-            zipcode
-            city
             external_url
-            events {
-              id
-              name
-              price
-              type
-              genres
-              image
-              poster
-              language
-              duration
-              description
-
-            }
           }
         
         } 
@@ -91,26 +76,11 @@ export const getJWT = async (
           name
           email
           telephone
-          venues {
+         venues {
             id
             name
             address
-            zipcode
-            city
             external_url
-            events {
-              id
-              name
-              price
-              type
-              genres
-              image
-              poster
-              language
-              duration
-              description
-              
-            }
           }
         }
         error
@@ -138,8 +108,11 @@ export const createPromoter = async (email: string, password: string, name: stri
           name
           email
           telephone
-          venues {
+           venues {
+            id
             name
+            address
+            external_url
           }
         }
         error
