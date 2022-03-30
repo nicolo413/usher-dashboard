@@ -1,13 +1,21 @@
 .mainContainer {
   padding-top: 1.5rem;
   max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .venueTitle {
-  margin-left: 1rem;
+  margin-left: 3rem;
 }
 
 .statsTitle {
-  margin-left: 1rem;
-  margin-top: 300px;
+  margin-top: 320px;
+
+  margin-left: 3rem;
+}
+
+.statsContainer {
+  margin-top: 3rem;
 }

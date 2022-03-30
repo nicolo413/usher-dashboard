@@ -23,8 +23,8 @@ const VenueCard = ({ venue }: Props) => {
                   className={styles.venueImage}
                   src={venue.external_url}
                   alt="Venue image"
-                  width="310px"
-                  height="130px"
+                  width="340px"
+                  height="220px"
                 />
               ) : null}
             </div>
