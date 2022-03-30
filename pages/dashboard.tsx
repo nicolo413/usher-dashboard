@@ -36,7 +36,7 @@ const Dashboard = () => {
           borderRadius="12"
           p="3"
         >
-          <Text fontWeight="medium" color="light.50" fontSize={24}>
+          <Text fontWeight="medium" color="light.100" fontSize={24}>
             Active events:
           </Text>
           <Text
@@ -57,16 +57,28 @@ const Dashboard = () => {
               ).length
             }
           </Text>
-          <Text fontWeight="medium" color="white" fontSize={24}>
+          <Text fontWeight="medium" color="light.100" fontSize={24}>
             Weekly ticket sales:
           </Text>
-          <Text ml="6" mb="2" fontWeight="medium" color="white" fontSize={32}>
+          <Text
+            ml="6"
+            mb="2"
+            fontWeight="medium"
+            color="light.50"
+            fontSize={32}
+          >
             🎟 {promoter.stats.week.total.sold_tickets} tickets
           </Text>
-          <Text fontWeight="medium" color="white" fontSize={24}>
+          <Text fontWeight="medium" color="light.100" fontSize={24}>
             Weekly income:
           </Text>
-          <Text ml="6" mb="2" fontWeight="medium" color="white" fontSize={32}>
+          <Text
+            ml="6"
+            mb="2"
+            fontWeight="medium"
+            color="light.50"
+            fontSize={32}
+          >
             💸 {promoter.stats.week.total.sales} €
           </Text>
         </VStack>
