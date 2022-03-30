@@ -1,0 +1,14 @@
+.inputClass {
+  height: 40;
+  font-family: 'Roboto, sans-serif';
+  text-align: 'center';
+  background-color: 'transparent';
+  -webkit-appearance: none;
+  border: 1px solid #737373;
+  border-radius: 6;
+  color: '#d9d9d9';
+}
+
+.inputClass:focus {
+  outline: none;
+}

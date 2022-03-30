@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import moment from "moment";
+import React, { useState } from 'react';
+import moment from 'moment';
 import {
   Box,
   Center,
@@ -10,8 +10,9 @@ import {
   InputGroup,
   InputRightAddon,
   Switch,
-} from "native-base";
-import { right } from "@cloudinary/url-gen/qualifiers/textAlignment";
+} from 'native-base';
+import { right } from '@cloudinary/url-gen/qualifiers/textAlignment';
+import styles from '../../styles/NewShowForm.module.css';
 
 type showFormProps = {
   shows: showType[];
@@ -23,9 +24,9 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
   return (
     <HStack
       style={{
-        width: "100%",
+        width: '100%',
         marginVertical: 15,
-        justifyContent: "space-between",
+        justifyContent: 'space-between',
       }}
     >
       <Box>
@@ -41,10 +42,17 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
             });
             setShows(updatedShows);
           }}
+          // className={styles.inputClass}
           style={{
             height: 40,
-            fontFamily: "Roboto, sans-serif",
-            textAlign: "center",
+            fontFamily: 'Roboto, sans-serif',
+            textAlign: 'center',
+            backgroundColor: 'transparent',
+            WebkitAppearance: 'none',
+            border: '1px solid #737373',
+            borderRadius: 6,
+            color: '#d9d9d9',
+            outline: 'none',
           }}
         />
       </Box>
@@ -53,8 +61,20 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
         <FormControl.Label>Available seats</FormControl.Label>
         <InputGroup>
           <input
-            type={"number"}
-            style={{ textAlign: "right", height: 40, width: "90%" }}
+            type={'number'}
+            style={{
+              backgroundColor: 'transparent',
+              WebkitAppearance: 'none',
+              border: '1px solid #737373',
+              borderTopLeftRadius: 6,
+              borderBottomLeftRadius: 6,
+              color: '#d9d9d9',
+              textAlign: 'right',
+              height: 40,
+              outline: 'none',
+              userSelect: 'none',
+              width: '90%',
+            }}
             value={String(shows[index].available_seats)}
             onChange={(seats) => {
               const updatedShow = {
@@ -75,6 +95,7 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
       <Box alignItems="center">
         <FormControl.Label>Active sale</FormControl.Label>
         <Switch
+          colorScheme="light"
           size="md"
           value={shows[index].active_sale}
           onToggle={() => {
