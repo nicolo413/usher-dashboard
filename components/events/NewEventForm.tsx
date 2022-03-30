@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Button,
@@ -14,8 +14,8 @@ import {
   VStack,
   Text,
   Flex,
-} from "native-base";
-import moment from "moment";
+} from 'native-base';
+import moment from 'moment';
 
 import NewShowForm from "./showForm";
 import ImagesInput from "./ImagesInput";
@@ -54,7 +54,7 @@ function showIsValid(show: showType) {
     };
     const [formData, setFormData] = useState<eventDataType>(defaultState);
   const defaultShow = {
-    date: moment(Date.now()).format("yyyy-MM-DDThh:mm"),
+    date: moment(Date.now()).format('yyyy-MM-DDThh:mm'),
     active_sale: false,
     available_seats: 0,
   };
@@ -65,8 +65,8 @@ function showIsValid(show: showType) {
     if (isValid()) {
       // Transform images to url
       if (formData.image && formData.poster) {
-        const imageURL = uploadImage(formData.image, "usher-image");
-        const posterURL = uploadImage(formData.poster, "usher-poster");
+        const imageURL = uploadImage(formData.image, 'usher-image');
+        const posterURL = uploadImage(formData.poster, 'usher-poster');
         Promise.all([imageURL, posterURL])
           .then(async (result) => {
             //@ts-ignore
@@ -90,9 +90,10 @@ function showIsValid(show: showType) {
           }
           )
           .catch(console.error);
+        setFormData(defaultState);
       }
       // Receive the new created event
-    } else console.log("Invalid data");
+    } else console.log('Invalid data');
   };
 
   const isValid = () => {
@@ -101,13 +102,13 @@ function showIsValid(show: showType) {
   };
 
   return (
-    <Flex w="full" h="100%" pb={36} overflow={"scroll"} alignItems={"center"}>
-      <FormControl isRequired w={"75%"} mb="5">
+    <Flex w="full" h="100%" pb={36} overflow={'scroll'} alignItems={'center'}>
+      <FormControl isRequired w={'75%'} mb="5">
         <FormControl.Label>Name</FormControl.Label>
         <Input
           isFullWidth
           size="md"
-          _focus={{ borderColor: "light.100" }}
+          _focus={{ borderColor: 'light.100' }}
           type="text"
           placeholder="Name"
           autoCapitalize="words"
@@ -118,12 +119,11 @@ function showIsValid(show: showType) {
           }}
         />
       </FormControl>
-      <FormControl isRequired w={"75%"} mb="5">
+      <FormControl isRequired w={'75%'} mb="5">
         <FormControl.Label>Event type</FormControl.Label>
         <Select
           placeholder="Select type of event"
           size="md"
-          _focus={{ borderColor: "light.100" }}
           onValueChange={(type) => {
             setFormData((currentData) => ({ ...currentData, type }));
           }}
@@ -134,13 +134,13 @@ function showIsValid(show: showType) {
           <Select.Item label="Circus" value="CIRCUS" />
         </Select>
       </FormControl>
-      <FormControl isRequired w={"75%"} mb="5">
-        <HStack justifyContent={"space-between"} mb="2">
+      <FormControl isRequired w={'75%'} mb="5">
+        <HStack justifyContent={'space-between'} mb="2">
           <VStack w="25%">
             <FormControl.Label>Price</FormControl.Label>
             <InputGroup>
               <Input
-                textAlign={"right"}
+                textAlign={'right'}
                 onChangeText={(price: string) => {
                   setFormData((currentData) => ({
                     ...currentData,
@@ -148,7 +148,7 @@ function showIsValid(show: showType) {
                   }));
                 }}
                 size="md"
-                _focus={{ borderColor: "light.100" }}
+                _focus={{ borderColor: 'light.100' }}
               />
               <InputRightAddon>€</InputRightAddon>
             </InputGroup>
@@ -160,8 +160,8 @@ function showIsValid(show: showType) {
             <InputGroup>
               <Input
                 size="md"
-                _focus={{ borderColor: "light.100" }}
-                textAlign={"right"}
+                _focus={{ borderColor: 'light.100' }}
+                textAlign={'right'}
                 onChangeText={(duration: string) => {
                   setFormData((currentData) => ({
                     ...currentData,
@@ -177,7 +177,6 @@ function showIsValid(show: showType) {
             <FormControl.Label>Language</FormControl.Label>
             <Select
               size="md"
-              _focus={{ borderColor: "light.100" }}
               placeholder="Select spoken language"
               onValueChange={(language) => {
                 setFormData((currentData) => ({ ...currentData, language }));
@@ -192,13 +191,13 @@ function showIsValid(show: showType) {
         </HStack>
       </FormControl>
 
-      <FormControl isRequired w={"75%"} mb="5">
+      <FormControl isRequired w={'75%'} mb="5">
         <FormControl.Label>Description</FormControl.Label>
 
         <TextArea
           h={20}
           size="md"
-          _focus={{ borderColor: "light.100" }}
+          _focus={{ borderColor: 'light.100' }}
           placeholder="Event description"
           onChangeText={(description) => {
             setFormData((currentData) => ({ ...currentData, description }));
@@ -207,7 +206,7 @@ function showIsValid(show: showType) {
         />
       </FormControl>
 
-      <FormControl isRequired w={"75%"} mb="5">
+      <FormControl isRequired w={'75%'} mb="5">
         <FormControl.Label>Genre (pick all which apply)</FormControl.Label>
         <Checkbox.Group
           onChange={(genres) => {
@@ -217,24 +216,30 @@ function showIsValid(show: showType) {
         >
           <Box w="100%" flexDirection="row" justifyItems="space-between">
             <Box w="33%">
-              <Checkbox value="Comedy">Comedy</Checkbox>
+              <Checkbox colorScheme="dark" value="Comedy">
+                Comedy
+              </Checkbox>
             </Box>
             <Box w="33%">
-              <Checkbox value="Drama">Drama</Checkbox>
+              <Checkbox colorScheme="dark" value="Drama">
+                Drama
+              </Checkbox>
             </Box>
             <Box w="33%">
-              <Checkbox value="Musical">Musical</Checkbox>
+              <Checkbox colorScheme="dark" value="Musical">
+                Musical
+              </Checkbox>
             </Box>
           </Box>
         </Checkbox.Group>
       </FormControl>
 
-      <FormControl isRequired w={"75%"} mb="5">
+      <FormControl isRequired w={'75%'} mb="5">
         <FormControl.Label>External URL</FormControl.Label>
         <Input
           isFullWidth
           size="md"
-          _focus={{ borderColor: "light.100" }}
+          _focus={{ borderColor: 'light.100' }}
           type="text"
           placeholder="Enter your event's site"
           value={formData.external_url}
@@ -246,17 +251,18 @@ function showIsValid(show: showType) {
 
       <ImagesInput setFormData={setFormData}></ImagesInput>
 
-      <FormControl isRequired w={"75%"} mb="10" mt="10">
+      <FormControl isRequired w={'75%'} mb="10" mt="10">
         <HStack alignItems="center" justifyContent="space-between">
           <FormControl.Label mr="6">Dates</FormControl.Label>
           <Button
+            colorScheme="dark"
             onPress={() => {
-              // if (showIsValid(shows[shows.length - 1])) {
-              setShows([...shows, defaultShow]);
-              // }
+              if (showIsValid(shows[shows.length - 1])) {
+                setShows([...shows, defaultShow]);
+              }
             }}
             size="md"
-            _focus={{ borderColor: "light.100" }}
+            _focus={{ borderColor: 'light.100' }}
           >
             Add another date ➕
           </Button>
@@ -276,7 +282,8 @@ function showIsValid(show: showType) {
 
       <Button
         size="md"
-        _focus={{ borderColor: "light.100" }}
+        colorScheme="dark"
+        _focus={{ borderColor: 'light.100' }}
         onPress={handleSubmit}
         // isLoading
         spinnerPlacement="end"
@@ -290,5 +297,5 @@ function showIsValid(show: showType) {
 
 export default NewEventForm;
 function loadImage() {
-  throw new Error("Function not implemented.");
+  throw new Error('Function not implemented.');
 }
