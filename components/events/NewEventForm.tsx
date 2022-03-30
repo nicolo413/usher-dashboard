@@ -39,7 +39,7 @@ function showIsValid(show: showType) {
   
   
   function NewEventForm({ venueId, setSelectedEvent, setCurrentVenue }: Props) {
-    
+    const [isLoading, setIsLoading] = useState(false);
     const defaultState = {
       name: undefined,
       price: undefined,
@@ -65,6 +65,7 @@ function showIsValid(show: showType) {
     if (isValid()) {
       // Transform images to url
       if (formData.image && formData.poster) {
+        setIsLoading(true);
         const imageURL = uploadImage(formData.image, 'usher-image');
         const posterURL = uploadImage(formData.poster, 'usher-poster');
         Promise.all([imageURL, posterURL])
@@ -286,7 +287,12 @@ function showIsValid(show: showType) {
         colorScheme="dark"
         _focus={{ borderColor: 'light.100' }}
         onPress={handleSubmit}
-        // isLoading
+        _loading={{
+          bg: "primary.500",
+          opacity: 0.85,
+          color: "light.50",
+        }}
+        isLoading={isLoading}
         spinnerPlacement="end"
         isLoadingText="Submitting"
       >
