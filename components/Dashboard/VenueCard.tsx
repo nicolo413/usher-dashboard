@@ -1,16 +1,15 @@
-import * as React from "react";
-import styles from "../../styles/VenueCard.module.css";
-import Link from "next/link";
-import Image from "next/image";
-import { Venue } from "../../utils/Types/dbTypes";
-import { useRouter } from "next/router";
+import * as React from 'react';
+import styles from '../../styles/VenueCard.module.css';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Venue } from '../../utils/Types/dbTypes';
+import { useRouter } from 'next/router';
 
 type Props = {
   venue: Venue;
 };
 
 const VenueCard = ({ venue }: Props) => {
-  console.log(venue);
   const router = useRouter();
 
   return (
@@ -24,8 +23,8 @@ const VenueCard = ({ venue }: Props) => {
                   className={styles.venueImage}
                   src={venue.external_url}
                   alt="Venue image"
-                  width="310px"
-                  height="130px"
+                  width="340px"
+                  height="220px"
                 />
               ) : null}
             </div>

@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { EventType } from "../../utils/Types/dbTypes";
 import ShowDetails from "./ShowDetails";
 import ShowHeadings from "./ShowHeadings";
 import styles from "../../styles/EventDetails.module.css"
 
-function EventDetails({ event }: { event: EventType | null }) {
+function EventDetails({ event }: { event: EventType }) {
+  //const [shows, setShows] = useState(event.shows);
+  useEffect(() => {}, [event]);
+
   if (!event) return null;
   return (
     <div className={styles.Container}>
