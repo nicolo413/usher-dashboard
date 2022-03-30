@@ -61,6 +61,7 @@ const NewShowForm = ({ shows, setShows, index }: showFormProps) => {
         <FormControl.Label>Available seats</FormControl.Label>
         <InputGroup>
           <input
+            min={1}
             type={'number'}
             style={{
               backgroundColor: 'transparent',
