@@ -1,6 +1,7 @@
 import EventCard from "../components/Dashboard/EventCard";
 import { Venue } from "../utils/Types/dbTypes";
 import * as React from "react";
+import { useState } from 'react';
 import styles from "../styles/VenuePage.module.css";
 import NewEventForm from "../components/events/NewEventForm";
 import { getVenueInfo } from "../services/api/venues";
@@ -20,6 +21,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 };
 
 const EventsPage = ({ venue }: { venue: Venue | null }) => {
+
+  const [selectedEvent, setSelectedEvent] = useState()
+
   if (venue) {
     return (
       <div className={styles.mainContainer}>

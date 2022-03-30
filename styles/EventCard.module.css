@@ -8,6 +8,10 @@
   transition: all ease-in-out 0.1s;
 }
 
+.add {
+  background-color: #2d3952;
+}
+
 .mainButton:hover {
   transform: scale(1.02);
   box-shadow: 0px -0px 2px 2px #6b87ac52;
@@ -24,6 +28,19 @@
   display: flex;
   margin-left: 0px;
   padding-left: 0px;
+}
+
+.addCard {
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: #2d3952;
+  display: flex;
+  margin-left: 0px;
+  min-height: 60px;
+  align-content: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 5px;
 }
 
 .image {

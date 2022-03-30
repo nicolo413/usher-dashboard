@@ -27,8 +27,19 @@ const EventCard = ({ event }: { event?: EventType }) => {
     );
   }
   return (
-    <button className={styles.mainButton}>
-      <div className={styles.card}>
+    <button className={styles.mainButton} style={{backgroundColor: '#2d3952'}}>
+      <div className={styles.addCard}>
+        <div className={styles.image}>
+          <Image
+          src="/images/plus.png"
+          alt={"Add new event button"}
+          height="45px"
+          width="45px"
+          />
+        </div>
+        <div className={styles.content}>
+          <h3 className={styles.title}>Add new Event</h3>
+        </div>
       </div>
     </button>
   );
