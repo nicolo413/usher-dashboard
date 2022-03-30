@@ -21,31 +21,38 @@ import NewShowForm from "./showForm";
 import ImagesInput from "./ImagesInput";
 import { uploadImage } from "../../utils/helpers/images";
 import { addNewEvent } from "../../services/api/event";
+import { EventType, Venue } from "../../utils/Types/dbTypes";
 
-const defaultState = {
-  name: undefined,
-  price: undefined,
-  type: undefined,
-  genres: undefined,
-  image: undefined,
-  poster: undefined,
-  language: undefined,
-  duration: undefined,
-  description: undefined,
-  external_url: undefined,
-};
+type Props = {
+  venueId: string,
+  setSelectedEvent: React.Dispatch<React.SetStateAction<EventType | null>>,
+  setCurrentVenue: React.Dispatch<React.SetStateAction<Venue | null>>
+}
 
 function showIsValid(show: showType) {
   return (
     show.available_seats > 0 &&
     show.available_seats <= 50 &&
     moment(show.date).valueOf() > Date.now()
-  );
-}
-
-function NewEventForm({ venueId }: { venueId: string }) {
-  const [formData, setFormData] = useState<eventDataType>(defaultState);
-
+    );
+  }
+  
+  
+  function NewEventForm({ venueId, setSelectedEvent, setCurrentVenue }: Props) {
+    
+    const defaultState = {
+      name: undefined,
+      price: undefined,
+      type: undefined,
+      genres: undefined,
+      image: undefined,
+      poster: undefined,
+      language: undefined,
+      duration: undefined,
+      description: undefined,
+      external_url: undefined,
+    };
+    const [formData, setFormData] = useState<eventDataType>(defaultState);
   const defaultShow = {
     date: moment(Date.now()).format("yyyy-MM-DDThh:mm"),
     active_sale: false,
@@ -70,8 +77,18 @@ function NewEventForm({ venueId }: { venueId: string }) {
               venue_id: venueId,
             };
             console.log(newEvent, shows);
-            await addNewEvent(newEvent, shows);
-          })
+            return addNewEvent(newEvent, shows);
+          }).then((addedEvent) => {
+            setCurrentVenue((venue) => {
+              if (venue) {
+                const newEvents: EventType[] = [...venue.events, addedEvent]
+                return {...venue, events: newEvents}
+              } else return null
+            })
+            setFormData(defaultState);
+            setSelectedEvent(addedEvent.event.id)
+          }
+          )
           .catch(console.error);
       }
       // Receive the new created event

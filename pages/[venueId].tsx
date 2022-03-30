@@ -1,7 +1,7 @@
 import EventCard from "../components/Dashboard/EventCard";
 import { EventType, Venue } from "../utils/Types/dbTypes";
 import * as React from "react";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from "../styles/VenuePage.module.css";
 import NewEventForm from "../components/events/NewEventForm";
 import { getVenueInfo } from "../services/api/venues";
@@ -24,22 +24,23 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 const EventsPage = ({ venue }: { venue: Venue | null }) => {
 
   const [selectedEvent, setSelectedEvent] = useState<EventType | null>(null);
+  const [currentVenue, setCurrentVenue] = useState<Venue | null>(venue);
 
-  if (venue ) {
+  if (venue && currentVenue) {
     return (
       <div className={styles.mainContainer}>
-        <h2>Events at {venue.name}:</h2>
+        <h2>Events at {currentVenue.name}:</h2>
         <div className={styles.container}>
           <div className={styles.eventList}>
             <EventCard key={'addNew'} setSelectedEvent={setSelectedEvent}/>
-            {venue.events && venue.events.length
-              ? venue.events.map((event) => {
+            {currentVenue.events && currentVenue.events.length
+              ? currentVenue.events.map((event) => {
                   return <EventCard key={event.id} event={event} setSelectedEvent={setSelectedEvent}/>;
                 })
               : null}
           </div>
           <div className={styles.formContainer}>
-            {venue && (selectedEvent === null) ? <NewEventForm venueId={venue.id as string} /> 
+            {currentVenue && (selectedEvent === null) ? <NewEventForm venueId={venue.id as string} setSelectedEvent={setSelectedEvent} setCurrentVenue={setCurrentVenue}/> 
               : 
               <EventDetails event={selectedEvent} />
             }

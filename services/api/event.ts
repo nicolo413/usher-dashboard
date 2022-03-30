@@ -13,20 +13,27 @@ export const addNewEvent = async (event: EventInput, shows: showType[]) => {
       createEvent( event: $event, shows: $shows) {
         error
         event {
-          name
-        duration
-        shows {
-          date
           id
-        }
-      }  
+          name
+          price
+          type
+          genres
+          image
+          poster
+          language
+          duration
+          description
+          shows {
+            date
+            active_sale
+          }
+        }  
     }
   }
   `;
 
   try {
     const { createEvent } = await client.request(mutation, { event, shows });
-    console.log(createEvent)
     if (createEvent.error) return createEvent.error
     return createEvent.event
   } catch (error) {
