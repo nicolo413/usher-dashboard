@@ -1,12 +1,12 @@
 import React from 'react';
-import { PieChart, Pie, Cell, Tooltip, Text } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { parseDonut } from '../utils/helpers/dashboard';
+import { Text } from 'native-base';
 
 const DonutChart = ({ weeklyData }: any) => {
   const data = parseDonut(weeklyData);
   const COLORS = ['#0088FEc5', '#00C49Fc5', '#8884d8'];
 
-  console.log(data);
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ const DonutChart = ({ weeklyData }: any) => {
         alignItems: 'center',
       }}
     >
-      <PieChart width={430} height={350}>
+      <PieChart width={430} height={300}>
         <Pie
           data={data}
           dataKey="sales"
@@ -35,7 +35,9 @@ const DonutChart = ({ weeklyData }: any) => {
           formatter={(value: string) => `${value}€`}
         />
       </PieChart>
-      <Text color="white">Revenue per venue</Text>
+      <Text fontSize={'lg'} mt="4" color="white">
+        Weekly revenue per event
+      </Text>
     </div>
   );
 };

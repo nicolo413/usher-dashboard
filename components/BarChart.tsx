@@ -1,5 +1,13 @@
 import React from 'react';
-import { Area, XAxis, AreaChart, YAxis, Tooltip, Legend } from 'recharts';
+import {
+  Area,
+  XAxis,
+  AreaChart,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 import { parseLineGraph } from '../utils/helpers/dashboard';
 
 function BarChart({ weeklyData }: { weeklyData: any }) {
@@ -7,7 +15,7 @@ function BarChart({ weeklyData }: { weeklyData: any }) {
   return (
     <AreaChart
       width={840}
-      height={380}
+      height={300}
       data={parsedData}
       margin={{
         top: 5,
@@ -56,6 +64,7 @@ function BarChart({ weeklyData }: { weeklyData: any }) {
         name="Tickets Sold"
       />
     </AreaChart>
+    // </ResponsiveContainer>
   );
 }
 

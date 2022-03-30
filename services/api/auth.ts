@@ -17,28 +17,8 @@ export const getPromoterProfile = async () => {
           name
           email
           telephone
-          stats {
-            day {
-              total {
-                sold_tickets
-                seats
-              }
-            }
-            week {
-              total {
-                sales
-              }
-            }
-            month {
-              total {
-                seats
-              }
-            }
-            year {
-              total {
-                seats
-              }
-            }
+          active_events {
+            id
           }
           venues {
             id

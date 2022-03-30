@@ -8,6 +8,7 @@ export type PromoterProfile = {
   venues: Venue[];
   telephone: number;
   stats: any;
+  active_events: any;
 };
 
 const mockProfile = {
