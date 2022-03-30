@@ -26,6 +26,7 @@ export const getVenueInfo = async (venueId: string) => {
             description
             external_url
             shows {
+              id
               date
               active_sale
               available_seats

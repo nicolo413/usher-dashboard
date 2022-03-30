@@ -6,6 +6,7 @@ import styles from "../styles/VenuePage.module.css";
 import NewEventForm from "../components/events/NewEventForm";
 import { getVenueInfo } from "../services/api/venues";
 import { GetServerSideProps } from "next";
+import EventDetails from "../components/events/EventDetails";
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const venueId = query.venueId;
@@ -30,7 +31,7 @@ const EventsPage = ({ venue }: { venue: Venue | null }) => {
         <h2>Events at {venue.name}:</h2>
         <div className={styles.container}>
           <div className={styles.eventList}>
-            <EventCard key={'addNew'} />
+            <EventCard key={"addNew"} />
             {venue.events && venue.events.length
               ? venue.events.map((event) => {
                   return <EventCard key={event.id} event={event} />;
@@ -38,7 +39,8 @@ const EventsPage = ({ venue }: { venue: Venue | null }) => {
               : null}
           </div>
           <div className={styles.formContainer}>
-            {venue ? <NewEventForm venueId={venue.id as string} /> : null}
+            {!venue ? <NewEventForm venueId={venue.id as string} /> : null}
+            {venue ? <EventDetails event={venue.events[0]} /> : null}
           </div>
         </div>
       </div>
