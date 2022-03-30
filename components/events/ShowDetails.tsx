@@ -20,7 +20,7 @@ function ShowDetails({ show, i }: { show: Show; i: number }) {
         h={8}
         alignItems={"center"}
         justifyContent={"center"}
-        colorScheme={show.active_sale ? "tertiary" : "primary"}
+        colorScheme={show.active_sale ? "tertiary" : "secondary"}
       >
         {show.active_sale ? "Active" : "Inactive"}
       </Badge>
