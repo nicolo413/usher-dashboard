@@ -9,9 +9,14 @@ const DonutChart = ({ weeklyData }: any) => {
   console.log(data);
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+      style={{
+        marginLeft: 40,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
     >
-      <PieChart width={730} height={350}>
+      <PieChart width={430} height={350}>
         <Pie
           data={data}
           dataKey="sales"

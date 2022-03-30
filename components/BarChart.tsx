@@ -6,7 +6,7 @@ function BarChart({ weeklyData }: { weeklyData: any }) {
   const parsedData = parseLineGraph(weeklyData);
   return (
     <AreaChart
-      width={600}
+      width={840}
       height={380}
       data={parsedData}
       margin={{
