@@ -22,6 +22,7 @@ import ImagesInput from "./ImagesInput";
 import { uploadImage } from "../../utils/helpers/images";
 import { addNewEvent } from "../../services/api/event";
 import { EventType, Venue } from "../../utils/Types/dbTypes";
+import { eventDataType, showType } from '../../utils/Types/formTypes';
 
 type Props = {
   venueId: string,

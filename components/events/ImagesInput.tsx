@@ -1,5 +1,6 @@
 import { Box, Button, Flex, FormControl, Image, VStack } from 'native-base';
 import React, { useState } from 'react';
+import { eventDataType } from '../../utils/Types/formTypes';
 
 type Props = {
   setFormData: React.Dispatch<React.SetStateAction<eventDataType>>;
