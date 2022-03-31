@@ -1,10 +1,10 @@
-type showType = {
+export type showType = {
   date: string;
   active_sale: boolean;
   available_seats: number;
 };
 
-type eventDataType = {
+export type eventDataType = {
   name: string | undefined;
   price: number | undefined;
   type: string | undefined;
@@ -17,7 +17,7 @@ type eventDataType = {
   external_url: string | undefined;
 };
 
-type EventInput = {
+export type EventInput = {
   name: string,
   price: number,
   type: 'THEATER' | 'CONCERT' | 'CINEMA' | 'CIRCUS',

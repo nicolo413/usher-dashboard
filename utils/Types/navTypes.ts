@@ -1,5 +1,4 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import type { StackNavigationProp, StackScreenProps } from "@react-navigation/stack";
+import { Show } from "./dbTypes";
 
 export type HomeTabParamList = {
   Home: undefined;
@@ -20,7 +19,3 @@ export type ProfileStackParamList = {
   Favorites: undefined;
   Tickets: undefined;
 }
-
-export type MainStackNavType = StackNavigationProp<MainStackParamList>;
-export type BottomTabScreenType = BottomTabScreenProps<HomeTabParamList>;
-export type StackScreenType = StackScreenProps<ProfileStackParamList>;

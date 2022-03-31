@@ -1,4 +1,5 @@
 import { gql, GraphQLClient } from 'graphql-request';
+import { Show } from '../../utils/Types/dbTypes';
 import { PromoterProfile } from '../../utils/Types/userTypes';
 
 const apiURL = 'https://tourn.me/usher/api';

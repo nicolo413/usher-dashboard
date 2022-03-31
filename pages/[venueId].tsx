@@ -40,9 +40,10 @@ const EventsPage = ({ venue }: { venue: Venue | null }) => {
               : null}
           </div>
           <div className={styles.formContainer}>
-            {currentVenue && (selectedEvent === null) ? <NewEventForm venueId={venue.id as string} setSelectedEvent={setSelectedEvent} setCurrentVenue={setCurrentVenue}/> 
+            {(currentVenue && (selectedEvent === null)) ? <NewEventForm venueId={venue.id as string} setSelectedEvent={setSelectedEvent} setCurrentVenue={setCurrentVenue}/> 
               : 
-              <EventDetails event={selectedEvent} />
+              selectedEvent ?
+              <EventDetails event={selectedEvent} /> : null
             }
           </div>
         </div>
