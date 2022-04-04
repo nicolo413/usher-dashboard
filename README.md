@@ -23,7 +23,7 @@ This repo corresponds to the event promoter app of the project. It can be used t
 1. Clone the repo
 
 ```
-git clone https://github.com/adriamcassorla/usher-api
+git clone https://github.com/nicolo413/usher-dashboard
 ```
 
 2. Install dependencies
