@@ -4,6 +4,13 @@
 
 Usher is an application to connect administrators of live event venues with unsold tickets and spectators looking for great last-minute plans at a discount.
 
+## Screenshots
+<p align="center">
+  <img style='width:40%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649069766/usher-posters/dashobard-2_nky8so.png" />
+  <img style='width:40%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649069768/usher-posters/dashboard-1_r8cbrn.png" />
+</p>
+
+
 ## Description
 
 This repo corresponds to the event promoter app of the project. It can be used together with these other repos:
