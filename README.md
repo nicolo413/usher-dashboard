@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img style='width:50%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649065349/usher-posters/usher-logo_gipdgq.png" />
+</p>
 
-## Getting Started
+Usher is an application to connect administrators of live event venues with unsold tickets and spectators looking for great last-minute plans at a discount.
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
+This repo corresponds to the event promoter app of the project. It can be used together with these other repos:
+* [Usher API](https://github.com/adriamcassorla/usher-api) - API that connects the apps with the database and handles requests.
+* [Usher Client](https://github.com/adrian-s-db/usher-client/) - Client-side mobile native app for final users.
+* [Usher Scanner](https://github.com/adriamcassorla/usher-scanner) - QR-Code scanner for ticket validation.
+
+## Getting started
+
+1. Clone the repo
+
+```
+git clone https://github.com/adriamcassorla/usher-api
+```
+
+2. Install dependencies
+```
+yarn install
+```
+
+3. Run the Next.js app
+```
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Built with
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+* [NextJS](https://nextjs.org/) - React Framework with production level performance.
+* [Native Base](https://nativebase.io/) - UI component library with mobile first approach.
+* [Recharts](https://recharts.org/) - Generate graphs to showcase performance stats.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Improvements are welcome :)
 
-## Learn More
+Fork the repo and do your thing. Push to your fork and submit a pull request.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authors
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* Nico López Diez - [Github](https://github.com/nicolo413) - [LinkedIn](https://www.linkedin.com/in/nicolas-lopez-diez/)
+* Adrià M. Cassorla - [Github](https://github.com/adriamcassorla) - [LinkedIn](https://www.linkedin.com/in/adriamcassorla/)
+* Adrian Suárez del Busto - [Github](https://github.com/adrian-s-db) - [LinkedIn](https://www.linkedin.com/in/adrian-s-delbusto/)
