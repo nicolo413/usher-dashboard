@@ -3,6 +3,7 @@
 </p>
 
 Usher is an application to connect administrators of live event venues with unsold tickets and spectators looking for great last-minute plans at a discount.
+* Video demo [here!](https://youtu.be/_8Rz_QcM1SA)
 
 ## Screenshots
 <p align="center">
