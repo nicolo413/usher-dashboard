@@ -6,8 +6,8 @@ Usher is an application to connect administrators of live event venues with unso
 
 ## Screenshots
 <p align="center">
-  <img style='width:40%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649069766/usher-posters/dashobard-2_nky8so.png" />
-  <img style='width:40%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649069768/usher-posters/dashboard-1_r8cbrn.png" />
+  <img style='width:49%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649069766/usher-posters/dashobard-2_nky8so.png" />
+  <img style='width:49%' src="https://res.cloudinary.com/dptkkaj8n/image/upload/v1649069768/usher-posters/dashboard-1_r8cbrn.png" />
 </p>
 
 
